@@ -15,8 +15,9 @@ report = load("report.json"); coauthors = load("coauthors.json")
 years = load("years.json"); cliches = load("cliches.json"); stoplist = load("stoplist.json")
 
 NAV = [("index.html", "Рейтинг"), ("years.html", "Слово года"),
-       ("coauthors.html", "Соавторы"), ("cliches.html", "Штампы"),
-       ("method.html", "Как считаем"), ("pipeline.html", "Кухня")]
+       ("coauthors.html", "Соавторы"), ("similarity.html", "Похожесть"),
+       ("cliches.html", "Штампы"), ("method.html", "Как считаем"),
+       ("pipeline.html", "Кухня")]
 
 CSS = r"""
 :root{--maze:#2A3FE5;--pac:#FFD400;--pink:#F4B9B0;
@@ -586,5 +587,71 @@ Surn/Name/Geox/Orgn) и <b>стиль</b> (нарицательная лекси
 """
     w("pipeline.html", head("Кухня — CHGK Lexicon", "pipeline.html", extra) + body + FOOT)
 
-build_index(); build_method(); build_years(); build_cliches(); build_coauthors(); build_pipeline()
+# ============================ similarity.html ============================
+def build_similarity():
+    SIM = {}
+    for a in report["authors"]:
+        SIM[a["name"]] = {
+            "pid": a["pid"],
+            "lex": [{"n": x["name"], "p": x["pid"]} for x in a.get("kindred", [])],
+            "delta": [{"n": x["name"], "p": x["pid"]} for x in a.get("kindred_delta", [])],
+            "ngram": [{"n": x["name"], "p": x["pid"]} for x in a.get("kindred_ngram", [])],
+            "emb": [{"n": x["name"], "p": x["pid"]} for x in a.get("kindred_emb", [])],
+        }
+    extra = """
+.cmp{background:var(--panel);border:3px solid var(--maze);border-radius:10px;padding:14px 16px;
+  margin:14px 0;box-shadow:5px 5px 0 var(--shadow)}
+.cmp .cn{font-weight:700;font-size:16px;margin-bottom:10px}
+.cmp .cn a{color:var(--accent);text-decoration:none}
+.cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:760px){.cols4{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.cols4{grid-template-columns:1fr}}
+.col .ch{font-family:var(--pixel);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+.col ol{margin:0;padding-left:18px}.col li{margin:4px 0;font-size:13.5px}
+.col a{color:var(--text);text-decoration:none;border-bottom:1px solid transparent}
+.col a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+#pick{font-family:var(--mono);font-size:14px;background:var(--panel);border:2px solid var(--maze);
+  color:var(--text);border-radius:6px;padding:10px 12px;min-width:260px}
+"""
+    body = """
+<h2>Похожесть авторов: 4 взгляда</h2>
+<p class="lead">«Похожи» бывает разное, поэтому соседей можно искать четырьмя способами. Выберите автора
+и сравните, кого выдаёт каждый метод (подробно про методы — на странице
+<a href="method.html">Как считаем</a>):</p>
+<ul class="lead" style="margin:6px 0">
+  <li><b>По лексике</b> — общие характерные слова (log-odds отпечаток). «Пишут про похожее похожими словами».</li>
+  <li><b>По манере (Delta)</b> — стилометрия по служебным словам. «Похоже устроена речь», без влияния темы.</li>
+  <li><b>По буквосочетаниям</b> — символьные 3-граммы. Почерк на уровне морфологии.</li>
+  <li><b>По смыслу (нейросеть)</b> — локальный doc2vec. Общее семантическое поле.</li>
+</ul>
+<p class="lead"><input id="pick" list="alist" placeholder="Введите автора и сравните…" autocomplete="off">
+<datalist id="alist"></datalist></p>
+<div id="one"></div>
+<h2>Три примера</h2>
+<p class="lead muted">Видно, что методы дают разных соседей: это и есть разные грани «похожести».</p>
+<div id="examples"></div>
+"""
+    script = """
+<script>
+const SIM=__SIM__;
+const METHODS=[['lex','по лексике'],['delta','по манере (Delta)'],['ngram','по буквосочетаниям'],['emb','по смыслу (нейро)']];
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function prof(x){return `<a href="https://gotquestions.online/person/${x.p}" target="_blank" rel="noopener">${esc(x.n)}</a>`;}
+function card(name){
+  const s=SIM[name]; if(!s) return '';
+  const cols=METHODS.map(([k,lab])=>`<div class="col"><div class="ch">${lab}</div><ol>${
+    (s[k]||[]).map(x=>`<li>${prof(x)}</li>`).join('')||'<li class="muted">—</li>'}</ol></div>`).join('');
+  return `<div class="cmp"><div class="cn"><a href="https://gotquestions.online/person/${s.pid}" target="_blank" rel="noopener">${esc(name)}</a></div><div class="cols4">${cols}</div></div>`;
+}
+document.getElementById('alist').innerHTML=Object.keys(SIM).sort().map(n=>`<option value="${esc(n)}">`).join('');
+const pick=document.getElementById('pick'),one=document.getElementById('one');
+pick.oninput=()=>{const v=pick.value.trim();one.innerHTML=SIM[v]?card(v):'';};
+document.getElementById('examples').innerHTML=['Эдуард Голуб','Андрей Акимов','Михаил Малкин'].map(card).join('');
+</script>
+"""
+    html = head("Похожесть — CHGK Lexicon", "similarity.html", extra) + body + FOOT
+    html = html.replace("</body></html>", script + "</body></html>")
+    w("similarity.html", html.replace("__SIM__", json.dumps(SIM, ensure_ascii=False, separators=(",", ":"))))
+
+build_index(); build_method(); build_years(); build_cliches(); build_coauthors(); build_pipeline(); build_similarity()
 print("site built")
