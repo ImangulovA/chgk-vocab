@@ -66,12 +66,33 @@ HTML, данные вшиты). Разрослось в мультистрани
   (canvas force-граф + рейтинг «у кого больше всего связей»), `cliches.html` (штампы),
   `method.html` (объяснение log-odds), `pipeline.html` («Кухня» — данные+скрипты).
 
-Порядок: `build_report.py` -> `compute_features.py` -> `build_site.py`.
-Venv из стендап-проекта (razdel+pymorphy3):
+- `similarity.py` — **4 способа близости авторов** -> дополняет `report.json` полями
+  `kindred_delta` / `kindred_ngram` / `kindred_emb` (плюс `kindred` = лексический из
+  compute_features). Способы: (1) лексика = стилевой отпечаток log-odds; (2) манера =
+  **Cosine Delta** (z-нормированные частоты служебных слов, стилометрия Burrows/Eder);
+  (3) буквосочетания = косинус профилей символьных **3-грамм** (tf-idf); (4) смысл =
+  **doc2vec** (Paragraph Vectors) — **локальная нейросеть**, обучается на нашем корпусе
+  (gensim, без внешних моделей и без API). На сайте переключаются селектором «соседи:».
+  Требует `numpy` + `gensim` (доставлены в venv через pip).
+
+- `phrases.py` — **фирменные обороты автора**: word би-/три-граммы по weighted log-odds
+  (форма слов, дедуп н-грамма на вопрос) -> поля `sig_bi` (топ-8) / `sig_tri` (топ-6).
+  Общие штампы ЧГК не лезут (они не отличают автора). Импортирует фильтры из compute_features.
+
+**LLM-аудит лемм:** имена/места/темы прогнаны через 5 параллельных агентов (см. историю),
+которые разметили обрывки, косвенные формы фамилий, отчества, бренды-не-места, нерусское.
+Итог зашит в compute_features: `AUDIT_BLOCK` (удалить, влит в META) и `FORCE_COMMON`
+(переклассифицировать имя/гео -> нарицательное, чтобы годные слова уехали в «стиль»).
+Отчества (`Patr`) отсекаются системно в `kind()`.
+
+Порядок: `build_report.py` -> `compute_features.py` -> `similarity.py` -> `phrases.py` -> `build_site.py`.
+Venv из стендап-проекта (razdel+pymorphy3, +numpy+gensim):
 ```
 V=/Users/imangulov/Desktop/standup_research/.venv/bin/python3
 $V scripts/build_report.py            # report.json (метрика словаря + pid)
-$V scripts/compute_features.py --fresh # фичи (--fresh = пересчёт кэша; без него из _raw.pkl)
+$V scripts/compute_features.py --fresh # фичи + kindred(лексика); --fresh = пересчёт кэша
+$V scripts/similarity.py              # kindred_delta/ngram/emb (doc2vec, ~неск. минут)
+$V scripts/phrases.py                 # sig_bi/sig_tri (фирменные обороты)
 $V scripts/build_site.py              # все 6 страниц
 ```
 (`build_html.py` — устаревший одностраничный сборщик, оставлен для истории.)

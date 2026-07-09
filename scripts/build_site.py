@@ -145,6 +145,12 @@ input[type=checkbox]{accent-color:var(--maze);width:16px;height:16px}
     <option value="total_questions">по числу вопросов</option>
     <option value="total_words">по объёму корпуса</option>
   </select>
+  <select id="sim" aria-label="Способ подсчёта близости" title="Как считать родственных авторов">
+    <option value="lex">соседи: по лексике</option>
+    <option value="delta">соседи: по манере (Delta)</option>
+    <option value="ngram">соседи: по буквосочетаниям</option>
+    <option value="emb">соседи: по смыслу (нейросеть)</option>
+  </select>
   <label class="tgl"><input type="checkbox" id="pale"> показать &lt;25k</label>
   <button type="button" class="btn" id="expand" aria-expanded="false">Раскрыть все разборы</button>
 </div>
@@ -157,19 +163,25 @@ const REPORT=__REPORT__;const A=REPORT.authors,M=REPORT.meta;const fmt=n=>n.toLo
 document.getElementById('stats').innerHTML=[['надёжных',fmt(M.reliable)],['медиана',fmt(M.median_reliable_lemmas)],
 ['авторов',fmt(M.total_authors)],['вопросов',fmt(M.total_questions)]].map(([l,n])=>
 `<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
-const qEl=q0('q'),sortEl=q0('sort'),paleEl=q0('pale'),expEl=q0('expand');function q0(i){return document.getElementById(i);}
-let allOpen=false;
+const qEl=q0('q'),sortEl=q0('sort'),paleEl=q0('pale'),expEl=q0('expand'),simEl=q0('sim');function q0(i){return document.getElementById(i);}
+let allOpen=false,simMode='lex';
+const SIMKEY={lex:'kindred',delta:'kindred_delta',ngram:'kindred_ngram',emb:'kindred_emb'};
+const SIMLAB={lex:'по лексике',delta:'по манере (Delta)',ngram:'по буквосочетаниям',emb:'по смыслу (нейросеть)'};
 function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 function hi(n,q){if(!q)return esc(n);const i=n.toLowerCase().indexOf(q.toLowerCase());if(i<0)return esc(n);
 return esc(n.slice(0,i))+'<mark>'+esc(n.slice(i,i+q.length))+'</mark>'+esc(n.slice(i+q.length));}
 const KIND={surn:'фамилия',name:'имя',geo:'место',org:'организация'};
 function detailHtml(r){
   const chip=x=>`<span class="chip"><b>${esc(x.lemma)}</b> <small>×${x.count}${x.others?', ещё у '+x.others:''}</small></span>`;
-  const kin=r.kindred.map(k=>`<a href="https://gotquestions.online/person/${k.pid}" target="_blank" rel="noopener">${esc(k.name)}</a>`).join(' · ');
+  const pchip=x=>`<span class="chip"><b>${esc(x.phrase)}</b> <small>×${x.count}</small></span>`;
+  const kk=(r[SIMKEY[simMode]]||r.kindred||[]);
+  const kin=kk.map(k=>`<a href="https://gotquestions.online/person/${k.pid}" target="_blank" rel="noopener">${esc(k.name)}</a>`).join(' · ');
   return `<div class="detail">
    <div class="lab">Слова-маркеры (стиль)</div>${r.sig_style.map(chip).join('')||'<span class="muted">—</span>'}
    <div class="lab">Темы (о чём чаще пишет)</div>${r.sig_theme.map(chip).join('')||'<span class="muted">—</span>'}
-   <div class="lab">Родственные авторы</div>${kin||'<span class="muted">—</span>'}
+   <div class="lab">Фирменные обороты · 2 слова</div>${(r.sig_bi||[]).map(pchip).join('')||'<span class="muted">—</span>'}
+   <div class="lab">Фирменные обороты · 3 слова</div>${(r.sig_tri||[]).map(pchip).join('')||'<span class="muted">—</span>'}
+   <div class="lab">Родственные авторы · ${SIMLAB[simMode]}</div>${kin||'<span class="muted">—</span>'}
    <div class="lab" style="margin-top:10px"><a href="method.html">Как это посчитано?</a></div></div>`;
 }
 let CUR=[];
@@ -198,6 +210,10 @@ q0('list').addEventListener('click',e=>{
 expEl.onclick=()=>{allOpen=!allOpen;expEl.classList.toggle('on',allOpen);
   expEl.setAttribute('aria-expanded',allOpen);
   expEl.textContent=allOpen?'Свернуть все разборы':'Раскрыть все разборы';render();};
+simEl.onchange=()=>{simMode=simEl.value;
+  if(allOpen){render();return;}
+  document.querySelectorAll('.drow').forEach(d=>{const pr=d.previousElementSibling;
+    if(pr&&pr.dataset.i!=null) d.innerHTML=detailHtml(CUR[+pr.dataset.i]);});};
 qEl.oninput=render;sortEl.onchange=render;paleEl.onchange=render;render();
 </script>
 """
@@ -234,12 +250,28 @@ def build_method():
 • <b>Темы</b> — имена, фамилии, города, организации: <i>о чём</i> автор любит спрашивать
 (Плутарх, Тэтчер, Ливерпуль).<br>
 • <b>Слова-маркеры</b> — нарицательная лексика: <i>как</i> он пишет (у Бориса Бурды это «каковой»,
-«весьма», «совершенно» — его фирменный高-штиль).</p>
+«весьма», «совершенно» — его фирменный высокий штиль).</p>
+<p class="lead">Тем же методом (log-odds) считаем <b>фирменные обороты</b> — словосочетания из 2 и 3 слов,
+характерные для автора (у Бурды «представьте себе», «без труда догадаетесь», «пролетарии всех стран
+соединяйтесь»). Общие для всего ЧГК штампы сюда не лезут: они не отличают автора.</p>
+<p class="lead muted">Мелочь по чистоте данных: белорусские и украинские вопросы отсеиваем по буквам
+і/ї/є/ґ/ў, снимаем знаки ударения перед разбором, а имена/места сверх этого прошли отдельный аудит
+(LLM-агенты разметили обрывки, отчества и бренды-не-места, они в стоп-листе).</p>
 <h2>Родственные авторы</h2>
-<p class="lead">Для каждого автора берём его <b>стилевой отпечаток</b>: вектор из слов, которыми он
-выделяется (те же z-оценки weighted log-odds по нарицательной лексике), и ищем троих с самым похожим
-отпечатком по косинусной близости. Важная деталь: мы сравниваем <b>характерность</b>, а не объём, поэтому
-самые плодовитые авторы не выпадают в соседи всем подряд. Это «пишут в одной манере», а не «про одно и то же».</p>
+<p class="lead">На сайте можно переключать <b>4 способа</b> искать похожих (селектор «соседи:» на главной), потому
+что «похожи» бывает разное:</p>
+<p class="lead">• <b>По лексике</b> — <b>стилевой отпечаток</b>: вектор слов, которыми автор выделяется (те же
+z-оценки weighted log-odds по нарицательной лексике), косинус. Сравниваем характерность, а не объём, поэтому
+плодовитые авторы не липнут ко всем.<br>
+• <b>По манере (Delta)</b> — классическая стилометрия (Burrows/Eder): берём частоты самых частых, в основном
+<b>служебных</b> слов, z-нормируем каждое по всем авторам и считаем косинус. Это «как устроена речь»,
+почти без влияния темы.<br>
+• <b>По буквосочетаниям</b> — профиль <b>символьных 3-грамм</b> (буквенных троек с границами слов), tf-idf +
+косинус. Устойчивый к теме почерк на уровне морфологии.<br>
+• <b>По смыслу (нейросеть)</b> — <b>doc2vec</b> (Paragraph Vectors): небольшая нейросеть, которую мы обучаем
+<b>локально на нашем корпусе</b> (без внешних моделей). Каждый автор получает вектор-эмбеддинг, соседи по косинусу.
+Ближе к «про одно и то же / общее семантическое поле».</p>
+<p class="lead">Интересно, что соседи по разным способам часто разные: это и есть разные грани «похожести».</p>
 <h2>Честные оговорки</h2>
 <p class="lead">Метрика ловит <b>разнообразие и характерность</b> словаря, а не «ум» или качество
 вопросов. Темы часто отражают эрудиционные пристрастия автора, а не стиль. А в корпусе последних лет
@@ -530,13 +562,18 @@ Surn/Name/Geox/Orgn) и <b>стиль</b> (нарицательная лекси
 
 <h2>Остальные метрики коротко</h2>
 <ul class="tight lead">
-  <li><b>Родственные авторы</b>: «стилевой отпечаток» = вектор z-оценок log-odds по характерным
-      нарицательным словам → 3 ближайших по косинусу (сравниваем характерность, а не объём корпуса).</li>
+  <li><b>Родственные авторы</b>: 4 способа на выбор (селектор «соседи:») — по лексике (log-odds отпечаток),
+      по манере (Cosine Delta на служебных словах), по буквосочетаниям (символьные 3-граммы),
+      по смыслу (локальный doc2vec, обучаем нейросеть на нашем корпусе). Считает <code>similarity.py</code>.</li>
   <li><b>Граф соавторства</b>: пары авторов по совместным вопросам; показываем связи силой ≥ {cm['wmin']}
       ({cm['nodes']} узлов, {cm['edges']} рёбер из {cm['total_pairs']} пар), чтобы не утонуть в одиночных.</li>
   <li><b>Слово/имя/место года</b>: та же log-odds, но «год против всех лет»; форматный жаргон ЧГК
       (икс, замена, раздатка, альфа) вынесен в стоп-лист.</li>
+  <li><b>Фирменные обороты автора</b>: word би-/три-граммы по weighted log-odds (скрипт <code>phrases.py</code>) —
+      характерные для автора словосочетания, а не общие штампы ЧГК.</li>
   <li><b>Штампы</b>: частоты зачинов (первые 2–4 слова) и триграмм по тексту всех вопросов.</li>
+  <li><b>Чистка</b>: отсев бел/укр по буквам і/ї/є/ґ/ў, снятие ударений (U+0301), дедуп леммы на вопрос,
+      + LLM-аудит имён/мест (обрывки, отчества, бренды-не-места в стоп-листе).</li>
 </ul>
 
 <h2>Честные оговорки</h2>
