@@ -42,6 +42,7 @@ def main():
     t0 = time.time()
     wc = collections.Counter()
     gender = {}
+    pid_votes = collections.defaultdict(collections.Counter)  # name -> {id: count}
     seen = set()
     for i, fn in enumerate(files):
         try:
@@ -59,6 +60,8 @@ def main():
                     nm = a.get("name", "?")
                     wc[nm] += n
                     gender[nm] = a.get("gender", "")
+                    if a.get("id"):
+                        pid_votes[nm][a["id"]] += 1
         if i % 1000 == 0:
             print(f"  pass1 {i}/{len(files)}", flush=True)
     qualifiers = {nm for nm, c in wc.items() if c >= DISPLAY_FLOOR}
@@ -129,7 +132,7 @@ def main():
             lemmas.add(lemma(w))
         rows.append({
             "name": nm,
-            "gender": gender.get(nm, ""),
+            "pid": (pid_votes[nm].most_common(1)[0][0] if pid_votes[nm] else None),
             "total_words": wc[nm],
             "total_questions": qcount[nm],
             "solo_questions": solo_q[nm],

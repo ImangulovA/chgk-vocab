@@ -11,7 +11,7 @@
  "authors": [
   {
    "name": "Леонид Климович",
-   "gender": "HE",
+   "pid": 25,
    "total_words": 179659,
    "total_questions": 4083,
    "solo_questions": 3828,
@@ -22,7 +22,7 @@
   },
   {
    "name": "Александр Мудрый",
-   "gender": "HE",
+   "pid": 326,
    "total_words": 41777,
    "total_questions": 714,
    "solo_questions": 704,
@@ -33,7 +33,7 @@
   },
   {
    "name": "Евгений Кононенко",
-   "gender": "HE",
+   "pid": 793,
    "total_words": 32709,
    "total_questions": 486,
    "solo_questions": 463,
@@ -44,7 +44,7 @@
   },
   {
    "name": "Сергей Донецков",
-   "gender": "HE",
+   "pid": 324,
    "total_words": 49186,
    "total_questions": 689,
    "solo_questions": 685,
@@ -55,7 +55,7 @@
   },
   {
    "name": "Борис Бурда",
-   "gender": "HE",
+   "pid": 1437,
    "total_words": 79256,
    "total_questions": 2504,
    "solo_questions": 2503,
@@ -66,7 +66,7 @@
   },
   {
    "name": "Денис Сарканич",
-   "gender": "HE",
+   "pid": 1718,
    "total_words": 53169,
    "total_questions": 1874,
    "solo_questions": 1871,
@@ -77,7 +77,7 @@
   },
   {
    "name": "Игорь Демьянцев",
-   "gender": "HE",
+   "pid": 367,
    "total_words": 66539,
    "total_questions": 1239,
    "solo_questions": 1183,
@@ -88,7 +88,7 @@
   },
   {
    "name": "Всеволод Постный",
-   "gender": "HE",
+   "pid": 1176,
    "total_words": 34906,
    "total_questions": 1635,
    "solo_questions": 1596,
@@ -99,7 +99,7 @@
   },
   {
    "name": "Борис Шойхет",
-   "gender": "HE",
+   "pid": 306,
    "total_words": 282337,
    "total_questions": 4604,
    "solo_questions": 4322,
@@ -110,7 +110,7 @@
   },
   {
    "name": "Артём Гулецкий",
-   "gender": "HE",
+   "pid": 215,
    "total_words": 26088,
    "total_questions": 422,
    "solo_questions": 384,
@@ -121,7 +121,7 @@
   },
   {
    "name": "Олег Пелипейченко",
-   "gender": "HE",
+   "pid": 12,
    "total_words": 53557,
    "total_questions": 1288,
    "solo_questions": 1246,
@@ -132,7 +132,7 @@
   },
   {
    "name": "Дмитрий Петров",
-   "gender": "HE",
+   "pid": 11,
    "total_words": 39677,
    "total_questions": 762,
    "solo_questions": 720,
@@ -143,7 +143,7 @@
   },
   {
    "name": "Александр Кудрявцев",
-   "gender": "HE",
+   "pid": 47,
    "total_words": 303906,
    "total_questions": 6163,
    "solo_questions": 6042,
@@ -154,7 +154,7 @@
   },
   {
    "name": "Павел Парфианович",
-   "gender": "HE",
+   "pid": 12332,
    "total_words": 29575,
    "total_questions": 441,
    "solo_questions": 439,
@@ -165,7 +165,7 @@
   },
   {
    "name": "Дмитрий Балашов",
-   "gender": "HE",
+   "pid": 378,
    "total_words": 32833,
    "total_questions": 555,
    "solo_questions": 505,
@@ -176,7 +176,7 @@
   },
   {
    "name": "Дмитрий Башук",
-   "gender": "HE",
+   "pid": 24,
    "total_words": 270646,
    "total_questions": 6526,
    "solo_questions": 6425,
@@ -187,7 +187,7 @@
   },
   {
    "name": "Дмитрий Сахаров",
-   "gender": "HE",
+   "pid": 131,
    "total_words": 25419,
    "total_questions": 405,
    "solo_questions": 389,
@@ -198,7 +198,7 @@
   },
   {
    "name": "Василий Корягин",
-   "gender": "HE",
+   "pid": 654,
    "total_words": 28743,
    "total_questions": 483,
    "solo_questions": 424,
@@ -209,7 +209,7 @@
   },
   {
    "name": "Тарас Вахрив",
-   "gender": "HE",
+   "pid": 366,
    "total_words": 68482,
    "total_questions": 1303,
    "solo_questions": 1301,
@@ -220,7 +220,7 @@
   },
   {
    "name": "Евгений Ярков",
-   "gender": "HE",
+   "pid": 1801,
    "total_words": 39719,
    "total_questions": 767,
    "solo_questions": 744,
@@ -231,7 +231,7 @@
   },
   {
    "name": "Леван Чхеидзе",
-   "gender": "HE",
+   "pid": 485,
    "total_words": 24847,
    "total_questions": 402,
    "solo_questions": 369,
@@ -242,7 +242,7 @@
   },
   {
    "name": "Максим Еремеев",
-   "gender": "HE",
+   "pid": 1919,
    "total_words": 24969,
    "total_questions": 353,
    "solo_questions": 350,
@@ -253,7 +253,7 @@
   },
   {
    "name": "Сергей Никольский",
-   "gender": "HE",
+   "pid": 12163,
    "total_words": 36653,
    "total_questions": 518,
    "solo_questions": 518,
@@ -264,7 +264,7 @@
   },
   {
    "name": "Дмитрий Жарков",
-   "gender": "HE",
+   "pid": 233,
    "total_words": 234092,
    "total_questions": 6331,
    "solo_questions": 6313,
@@ -275,7 +275,7 @@
   },
   {
    "name": "Анатолий Белкин",
-   "gender": "HE",
+   "pid": 1613,
    "total_words": 182098,
    "total_questions": 3132,
    "solo_questions": 2521,
@@ -286,7 +286,7 @@
   },
   {
    "name": "Ольга Кузьма",
-   "gender": "HE",
+   "pid": 3273,
    "total_words": 31814,
    "total_questions": 941,
    "solo_questions": 304,
@@ -297,7 +297,7 @@
   },
   {
    "name": "Александр Чижов",
-   "gender": "HE",
+   "pid": 540,
    "total_words": 53427,
    "total_questions": 1115,
    "solo_questions": 1066,
@@ -308,7 +308,7 @@
   },
   {
    "name": "Валерий Леонченко",
-   "gender": "HE",
+   "pid": 526,
    "total_words": 47135,
    "total_questions": 862,
    "solo_questions": 788,
@@ -319,7 +319,7 @@
   },
   {
    "name": "Владимир Крикунов",
-   "gender": "HE",
+   "pid": 3376,
    "total_words": 53082,
    "total_questions": 1069,
    "solo_questions": 1064,
@@ -330,7 +330,7 @@
   },
   {
    "name": "Дмитрий Стальнухин",
-   "gender": "HE",
+   "pid": 12102,
    "total_words": 34975,
    "total_questions": 460,
    "solo_questions": 432,
@@ -341,7 +341,7 @@
   },
   {
    "name": "Дмитрий Некрылов",
-   "gender": "HE",
+   "pid": 685,
    "total_words": 51342,
    "total_questions": 1139,
    "solo_questions": 1125,
@@ -352,7 +352,7 @@
   },
   {
    "name": "Сергей Лобачёв",
-   "gender": "HE",
+   "pid": 13,
    "total_words": 37449,
    "total_questions": 781,
    "solo_questions": 749,
@@ -363,7 +363,7 @@
   },
   {
    "name": "Павел Столяров",
-   "gender": "HE",
+   "pid": 449,
    "total_words": 23388,
    "total_questions": 397,
    "solo_questions": 385,
@@ -374,7 +374,7 @@
   },
   {
    "name": "Олег Михеев",
-   "gender": "HE",
+   "pid": 172,
    "total_words": 58878,
    "total_questions": 810,
    "solo_questions": 800,
@@ -385,7 +385,7 @@
   },
   {
    "name": "Эдуард Голуб",
-   "gender": "HE",
+   "pid": 327,
    "total_words": 238075,
    "total_questions": 3586,
    "solo_questions": 3473,
@@ -396,7 +396,7 @@
   },
   {
    "name": "Павел Солахян",
-   "gender": "HE",
+   "pid": 268,
    "total_words": 63116,
    "total_questions": 1086,
    "solo_questions": 1079,
@@ -407,7 +407,7 @@
   },
   {
    "name": "Андрей Волков",
-   "gender": "HE",
+   "pid": 27,
    "total_words": 39181,
    "total_questions": 691,
    "solo_questions": 676,
@@ -418,7 +418,7 @@
   },
   {
    "name": "Евгений Копейка",
-   "gender": "HE",
+   "pid": 1441,
    "total_words": 259203,
    "total_questions": 7721,
    "solo_questions": 7637,
@@ -429,7 +429,7 @@
   },
   {
    "name": "Артём Рожков",
-   "gender": "HE",
+   "pid": 335,
    "total_words": 74115,
    "total_questions": 867,
    "solo_questions": 859,
@@ -440,7 +440,7 @@
   },
   {
    "name": "Константин Науменко",
-   "gender": "HE",
+   "pid": 567,
    "total_words": 183645,
    "total_questions": 4321,
    "solo_questions": 4150,
@@ -451,7 +451,7 @@
   },
   {
    "name": "Дмитрий Соловьёв",
-   "gender": "HE",
+   "pid": 185,
    "total_words": 111310,
    "total_questions": 2595,
    "solo_questions": 2558,
@@ -462,7 +462,7 @@
   },
   {
    "name": "Владимир Осипчук",
-   "gender": "HE",
+   "pid": 213,
    "total_words": 34416,
    "total_questions": 430,
    "solo_questions": 428,
@@ -473,7 +473,7 @@
   },
   {
    "name": "Олександр Мерзликин",
-   "gender": "HE",
+   "pid": 365,
    "total_words": 59133,
    "total_questions": 809,
    "solo_questions": 761,
@@ -484,7 +484,7 @@
   },
   {
    "name": "Виктор Чепой",
-   "gender": "HE",
+   "pid": 377,
    "total_words": 27345,
    "total_questions": 465,
    "solo_questions": 457,
@@ -495,7 +495,7 @@
   },
   {
    "name": "Антон Саксонов",
-   "gender": "HE",
+   "pid": 105,
    "total_words": 159128,
    "total_questions": 2231,
    "solo_questions": 2215,
@@ -506,7 +506,7 @@
   },
   {
    "name": "Сергей Шоргин",
-   "gender": "HE",
+   "pid": 1604,
    "total_words": 33934,
    "total_questions": 850,
    "solo_questions": 759,
@@ -517,7 +517,7 @@
   },
   {
    "name": "Валерий Семёнов",
-   "gender": "HE",
+   "pid": 7,
    "total_words": 39019,
    "total_questions": 812,
    "solo_questions": 801,
@@ -528,7 +528,7 @@
   },
   {
    "name": "Александр Губин",
-   "gender": "HE",
+   "pid": 323,
    "total_words": 25489,
    "total_questions": 399,
    "solo_questions": 388,
@@ -539,7 +539,7 @@
   },
   {
    "name": "Игорь Волобуев",
-   "gender": "HE",
+   "pid": 224,
    "total_words": 94347,
    "total_questions": 2708,
    "solo_questions": 2654,
@@ -550,7 +550,7 @@
   },
   {
    "name": "Иван Ерёмин",
-   "gender": "HE",
+   "pid": 264,
    "total_words": 54397,
    "total_questions": 850,
    "solo_questions": 810,
@@ -561,7 +561,7 @@
   },
   {
    "name": "Александр Евтушков",
-   "gender": "HE",
+   "pid": 438,
    "total_words": 24673,
    "total_questions": 357,
    "solo_questions": 347,
@@ -572,7 +572,7 @@
   },
   {
    "name": "Сергей Козлов",
-   "gender": "HE",
+   "pid": 293,
    "total_words": 23741,
    "total_questions": 1017,
    "solo_questions": 1016,
@@ -583,7 +583,7 @@
   },
   {
    "name": "Михаил Перлин",
-   "gender": "HE",
+   "pid": 221,
    "total_words": 126571,
    "total_questions": 2919,
    "solo_questions": 2620,
@@ -594,7 +594,7 @@
   },
   {
    "name": "Руслан Алиев",
-   "gender": "HE",
+   "pid": 269,
    "total_words": 129705,
    "total_questions": 1582,
    "solo_questions": 1544,
@@ -605,7 +605,7 @@
   },
   {
    "name": "Вячеслав Санников",
-   "gender": "HE",
+   "pid": 1293,
    "total_words": 57398,
    "total_questions": 1780,
    "solo_questions": 1749,
@@ -616,7 +616,7 @@
   },
   {
    "name": "Дмитрий Славин",
-   "gender": "HE",
+   "pid": 1245,
    "total_words": 30726,
    "total_questions": 594,
    "solo_questions": 576,
@@ -627,7 +627,7 @@
   },
   {
    "name": "Сергей Вознесенский",
-   "gender": "HE",
+   "pid": 2303,
    "total_words": 23344,
    "total_questions": 283,
    "solo_questions": 240,
@@ -638,7 +638,7 @@
   },
   {
    "name": "Дмитрий Борок",
-   "gender": "HE",
+   "pid": 234,
    "total_words": 176765,
    "total_questions": 3384,
    "solo_questions": 3265,
@@ -649,7 +649,7 @@
   },
   {
    "name": "Евгений Поникаров",
-   "gender": "HE",
+   "pid": 537,
    "total_words": 60069,
    "total_questions": 1404,
    "solo_questions": 1277,
@@ -660,7 +660,7 @@
   },
   {
    "name": "Ольга Неумывакина",
-   "gender": "HE",
+   "pid": 33,
    "total_words": 191703,
    "total_questions": 4658,
    "solo_questions": 4602,
@@ -671,7 +671,7 @@
   },
   {
    "name": "Михаил Рогачёв",
-   "gender": "HE",
+   "pid": 31,
    "total_words": 24129,
    "total_questions": 551,
    "solo_questions": 544,
@@ -682,7 +682,7 @@
   },
   {
    "name": "Александр Рождествин",
-   "gender": "HE",
+   "pid": 97,
    "total_words": 143274,
    "total_questions": 1963,
    "solo_questions": 1943,
@@ -693,7 +693,7 @@
   },
   {
    "name": "Мария Подрядчикова",
-   "gender": "SE",
+   "pid": 5,
    "total_words": 84134,
    "total_questions": 1584,
    "solo_questions": 1562,
@@ -704,7 +704,7 @@
   },
   {
    "name": "Юрий Вашкулат",
-   "gender": "HE",
+   "pid": 228,
    "total_words": 46411,
    "total_questions": 858,
    "solo_questions": 838,
@@ -715,7 +715,7 @@
   },
   {
    "name": "Денис Рыбачук",
-   "gender": "HE",
+   "pid": 67,
    "total_words": 84222,
    "total_questions": 1796,
    "solo_questions": 1741,
@@ -726,7 +726,7 @@
   },
   {
    "name": "Александр Печеный",
-   "gender": "HE",
+   "pid": 413,
    "total_words": 28879,
    "total_questions": 473,
    "solo_questions": 463,
@@ -737,7 +737,7 @@
   },
   {
    "name": "Алексей Норицин",
-   "gender": "HE",
+   "pid": 2696,
    "total_words": 25008,
    "total_questions": 761,
    "solo_questions": 753,
@@ -748,7 +748,7 @@
   },
   {
    "name": "Михаил Савченков",
-   "gender": "HE",
+   "pid": 114,
    "total_words": 59698,
    "total_questions": 1103,
    "solo_questions": 1081,
@@ -759,7 +759,7 @@
   },
   {
    "name": "Дмитрий Смирнов",
-   "gender": "HE",
+   "pid": 1331,
    "total_words": 59107,
    "total_questions": 804,
    "solo_questions": 590,
@@ -770,7 +770,7 @@
   },
   {
    "name": "Михаил Малкин",
-   "gender": "HE",
+   "pid": 83,
    "total_words": 75586,
    "total_questions": 1466,
    "solo_questions": 1405,
@@ -781,7 +781,7 @@
   },
   {
    "name": "Илья Ратнер",
-   "gender": "HE",
+   "pid": 242,
    "total_words": 48942,
    "total_questions": 882,
    "solo_questions": 752,
@@ -792,7 +792,7 @@
   },
   {
    "name": "Андрей Солдатов",
-   "gender": "HE",
+   "pid": 55,
    "total_words": 46394,
    "total_questions": 1001,
    "solo_questions": 988,
@@ -803,7 +803,7 @@
   },
   {
    "name": "Ровшан Аскеров",
-   "gender": "HE",
+   "pid": 1164,
    "total_words": 23833,
    "total_questions": 591,
    "solo_questions": 587,
@@ -814,7 +814,7 @@
   },
   {
    "name": "Денис Гончар",
-   "gender": "HE",
+   "pid": 26,
    "total_words": 28776,
    "total_questions": 620,
    "solo_questions": 591,
@@ -825,7 +825,7 @@
   },
   {
    "name": "Максим Евланов",
-   "gender": "HE",
+   "pid": 30,
    "total_words": 185110,
    "total_questions": 3739,
    "solo_questions": 3689,
@@ -836,7 +836,7 @@
   },
   {
    "name": "Наталья Комар",
-   "gender": "SE",
+   "pid": 354,
    "total_words": 40787,
    "total_questions": 485,
    "solo_questions": 469,
@@ -847,7 +847,7 @@
   },
   {
    "name": "Руслан Горусев",
-   "gender": "HE",
+   "pid": 702,
    "total_words": 33434,
    "total_questions": 648,
    "solo_questions": 618,
@@ -858,7 +858,7 @@
   },
   {
    "name": "Владислав Карнацевич",
-   "gender": "HE",
+   "pid": 241,
    "total_words": 29324,
    "total_questions": 551,
    "solo_questions": 535,
@@ -869,7 +869,7 @@
   },
   {
    "name": "Андрей Островский",
-   "gender": "HE",
+   "pid": 104,
    "total_words": 25684,
    "total_questions": 500,
    "solo_questions": 486,
@@ -880,7 +880,7 @@
   },
   {
    "name": "Андрей Скиренко",
-   "gender": "HE",
+   "pid": 109,
    "total_words": 99794,
    "total_questions": 1405,
    "solo_questions": 1390,
@@ -891,7 +891,7 @@
   },
   {
    "name": "Леонид Гельфанд",
-   "gender": "HE",
+   "pid": 1990,
    "total_words": 47613,
    "total_questions": 954,
    "solo_questions": 818,
@@ -902,7 +902,7 @@
   },
   {
    "name": "Михаил Екимов",
-   "gender": "HE",
+   "pid": 90,
    "total_words": 31703,
    "total_questions": 505,
    "solo_questions": 472,
@@ -913,7 +913,7 @@
   },
   {
    "name": "Юлия Романовская",
-   "gender": "HE",
+   "pid": 6091,
    "total_words": 27345,
    "total_questions": 630,
    "solo_questions": 624,
@@ -924,7 +924,7 @@
   },
   {
    "name": "Николай Лёгенький",
-   "gender": "HE",
+   "pid": 285,
    "total_words": 38222,
    "total_questions": 866,
    "solo_questions": 828,
@@ -935,7 +935,7 @@
   },
   {
    "name": "Артём Колесов",
-   "gender": "HE",
+   "pid": 111,
    "total_words": 125760,
    "total_questions": 2298,
    "solo_questions": 2210,
@@ -946,7 +946,7 @@
   },
   {
    "name": "Эдуард Шагал",
-   "gender": "HE",
+   "pid": 312,
    "total_words": 28336,
    "total_questions": 366,
    "solo_questions": 277,
@@ -957,7 +957,7 @@
   },
   {
    "name": "Станислав Мереминский",
-   "gender": "HE",
+   "pid": 110,
    "total_words": 50375,
    "total_questions": 970,
    "solo_questions": 951,
@@ -968,7 +968,7 @@
   },
   {
    "name": "Юрий Коробов",
-   "gender": "HE",
+   "pid": 1369,
    "total_words": 29704,
    "total_questions": 388,
    "solo_questions": 344,
@@ -979,7 +979,7 @@
   },
   {
    "name": "Сергей Ефимов",
-   "gender": "HE",
+   "pid": 1818,
    "total_words": 26520,
    "total_questions": 485,
    "solo_questions": 379,
@@ -990,7 +990,7 @@
   },
   {
    "name": "Александр Либер",
-   "gender": "HE",
+   "pid": 220,
    "total_words": 41147,
    "total_questions": 998,
    "solo_questions": 889,
@@ -1001,7 +1001,7 @@
   },
   {
    "name": "Артём Матухно",
-   "gender": "HE",
+   "pid": 694,
    "total_words": 81822,
    "total_questions": 1710,
    "solo_questions": 1632,
@@ -1012,7 +1012,7 @@
   },
   {
    "name": "Андрей Акимов",
-   "gender": "HE",
+   "pid": 136,
    "total_words": 42895,
    "total_questions": 497,
    "solo_questions": 493,
@@ -1023,7 +1023,7 @@
   },
   {
    "name": "Анвар Мухаметкалиев",
-   "gender": "HE",
+   "pid": 48,
    "total_words": 80252,
    "total_questions": 1243,
    "solo_questions": 1232,
@@ -1034,7 +1034,7 @@
   },
   {
    "name": "Евгений Миротин",
-   "gender": "HE",
+   "pid": 113,
    "total_words": 51292,
    "total_questions": 897,
    "solo_questions": 817,
@@ -1045,7 +1045,7 @@
   },
   {
    "name": "Тимур Барский",
-   "gender": "HE",
+   "pid": 218,
    "total_words": 98722,
    "total_questions": 1759,
    "solo_questions": 1714,
@@ -1056,7 +1056,7 @@
   },
   {
    "name": "Алексей Богословский",
-   "gender": "HE",
+   "pid": 68,
    "total_words": 118044,
    "total_questions": 2308,
    "solo_questions": 1979,
@@ -1067,7 +1067,7 @@
   },
   {
    "name": "Тимофей Боков",
-   "gender": "HE",
+   "pid": 8,
    "total_words": 23194,
    "total_questions": 382,
    "solo_questions": 368,
@@ -1078,7 +1078,7 @@
   },
   {
    "name": "Дмитрий Богданов",
-   "gender": "HE",
+   "pid": 584,
    "total_words": 22016,
    "total_questions": 423,
    "solo_questions": 421,
@@ -1089,7 +1089,7 @@
   },
   {
    "name": "Серафим Шибанов",
-   "gender": "HE",
+   "pid": 336,
    "total_words": 168180,
    "total_questions": 3276,
    "solo_questions": 3135,
@@ -1100,7 +1100,7 @@
   },
   {
    "name": "Алексей Шередега",
-   "gender": "HE",
+   "pid": 106,
    "total_words": 32960,
    "total_questions": 448,
    "solo_questions": 446,
@@ -1111,7 +1111,7 @@
   },
   {
    "name": "Андрей Грамматик",
-   "gender": "HE",
+   "pid": 831,
    "total_words": 28102,
    "total_questions": 759,
    "solo_questions": 754,
@@ -1122,7 +1122,7 @@
   },
   {
    "name": "Сергей Черкасов",
-   "gender": "HE",
+   "pid": 13138,
    "total_words": 20795,
    "total_questions": 420,
    "solo_questions": 267,
@@ -1133,7 +1133,7 @@
   },
   {
    "name": "Дмитрий Буценец",
-   "gender": "HE",
+   "pid": 454,
    "total_words": 24930,
    "total_questions": 350,
    "solo_questions": 329,
@@ -1144,7 +1144,7 @@
   },
   {
    "name": "Константин Ильин",
-   "gender": "HE",
+   "pid": 5401,
    "total_words": 43242,
    "total_questions": 891,
    "solo_questions": 567,
@@ -1155,7 +1155,7 @@
   },
   {
    "name": "Владислав Король",
-   "gender": "HE",
+   "pid": 41,
    "total_words": 41000,
    "total_questions": 697,
    "solo_questions": 659,
@@ -1166,7 +1166,7 @@
   },
   {
    "name": "Евгений Калюков",
-   "gender": "HE",
+   "pid": 186,
    "total_words": 63896,
    "total_questions": 1070,
    "solo_questions": 1049,
@@ -1177,7 +1177,7 @@
   },
   {
    "name": "Сергей Терентьев",
-   "gender": "HE",
+   "pid": 6,
    "total_words": 136961,
    "total_questions": 2355,
    "solo_questions": 2227,
@@ -1188,7 +1188,7 @@
   },
   {
    "name": "Павел Казначеев",
-   "gender": "HE",
+   "pid": 103,
    "total_words": 76148,
    "total_questions": 863,
    "solo_questions": 857,
@@ -1199,7 +1199,7 @@
   },
   {
    "name": "Константин Сахаров",
-   "gender": "HE",
+   "pid": 119,
    "total_words": 112352,
    "total_questions": 2020,
    "solo_questions": 1835,
@@ -1210,7 +1210,7 @@
   },
   {
    "name": "Мария Клименко",
-   "gender": "HE",
+   "pid": 897,
    "total_words": 30491,
    "total_questions": 436,
    "solo_questions": 436,
@@ -1221,7 +1221,7 @@
   },
   {
    "name": "Илья Кукушкин",
-   "gender": "HE",
+   "pid": 99,
    "total_words": 23681,
    "total_questions": 386,
    "solo_questions": 384,
@@ -1232,7 +1232,7 @@
   },
   {
    "name": "Евгений Дёмин",
-   "gender": "HE",
+   "pid": 1332,
    "total_words": 22544,
    "total_questions": 390,
    "solo_questions": 360,
@@ -1243,7 +1243,7 @@
   },
   {
    "name": "Илья Иткин",
-   "gender": "HE",
+   "pid": 169,
    "total_words": 22424,
    "total_questions": 558,
    "solo_questions": 500,
@@ -1254,7 +1254,7 @@
   },
   {
    "name": "Александр Коробейников",
-   "gender": "HE",
+   "pid": 72,
    "total_words": 345635,
    "total_questions": 7566,
    "solo_questions": 7343,
@@ -1265,7 +1265,7 @@
   },
   {
    "name": "Дмитрий Лурье",
-   "gender": "HE",
+   "pid": 1711,
    "total_words": 23267,
    "total_questions": 318,
    "solo_questions": 155,
@@ -1276,7 +1276,7 @@
   },
   {
    "name": "Сергей Спешков",
-   "gender": "HE",
+   "pid": 79,
    "total_words": 51423,
    "total_questions": 1059,
    "solo_questions": 1038,
@@ -1287,7 +1287,7 @@
   },
   {
    "name": "Владимир Островский",
-   "gender": "HE",
+   "pid": 112,
    "total_words": 134919,
    "total_questions": 2836,
    "solo_questions": 2759,
@@ -1298,7 +1298,7 @@
   },
   {
    "name": "Александр Ермишкин",
-   "gender": "HE",
+   "pid": 1358,
    "total_words": 53331,
    "total_questions": 673,
    "solo_questions": 664,
@@ -1309,7 +1309,7 @@
   },
   {
    "name": "Максим Мерзляков",
-   "gender": "HE",
+   "pid": 267,
    "total_words": 477724,
    "total_questions": 7627,
    "solo_questions": 7557,
@@ -1320,7 +1320,7 @@
   },
   {
    "name": "Алексей Бороненко",
-   "gender": "HE",
+   "pid": 101,
    "total_words": 88023,
    "total_questions": 1372,
    "solo_questions": 1333,
@@ -1331,7 +1331,7 @@
   },
   {
    "name": "Михаил Чернышев",
-   "gender": "HE",
+   "pid": 229,
    "total_words": 21235,
    "total_questions": 485,
    "solo_questions": 474,
@@ -1342,7 +1342,7 @@
   },
   {
    "name": "Александр Ведехин",
-   "gender": "HE",
+   "pid": 795,
    "total_words": 31845,
    "total_questions": 796,
    "solo_questions": 762,
@@ -1353,7 +1353,7 @@
   },
   {
    "name": "Александр Голиков",
-   "gender": "HE",
+   "pid": 1602,
    "total_words": 22644,
    "total_questions": 436,
    "solo_questions": 413,
@@ -1364,7 +1364,7 @@
   },
   {
    "name": "Наиль Фарукшин",
-   "gender": "HE",
+   "pid": 484,
    "total_words": 104851,
    "total_questions": 1776,
    "solo_questions": 1703,
@@ -1375,7 +1375,7 @@
   },
   {
    "name": "Григорий Алхазов",
-   "gender": "HE",
+   "pid": 555,
    "total_words": 31434,
    "total_questions": 504,
    "solo_questions": 425,
@@ -1386,7 +1386,7 @@
   },
   {
    "name": "Антон Снятковский",
-   "gender": "HE",
+   "pid": 950,
    "total_words": 22965,
    "total_questions": 370,
    "solo_questions": 328,
@@ -1397,7 +1397,7 @@
   },
   {
    "name": "Николай Коврижных",
-   "gender": "HE",
+   "pid": 181,
    "total_words": 64815,
    "total_questions": 1243,
    "solo_questions": 1114,
@@ -1408,7 +1408,7 @@
   },
   {
    "name": "Дмитрий Великов",
-   "gender": "HE",
+   "pid": 93,
    "total_words": 23408,
    "total_questions": 373,
    "solo_questions": 348,
@@ -1419,7 +1419,7 @@
   },
   {
    "name": "Виктор Мялов",
-   "gender": "HE",
+   "pid": 790,
    "total_words": 179180,
    "total_questions": 3144,
    "solo_questions": 2829,
@@ -1430,7 +1430,7 @@
   },
   {
    "name": "Игорь Пятов",
-   "gender": "HE",
+   "pid": 56,
    "total_words": 22086,
    "total_questions": 516,
    "solo_questions": 513,
@@ -1441,7 +1441,7 @@
   },
   {
    "name": "Максим Мозуль",
-   "gender": "HE",
+   "pid": 85,
    "total_words": 73147,
    "total_questions": 1141,
    "solo_questions": 1079,
@@ -1452,7 +1452,7 @@
   },
   {
    "name": "Амаль Имангулов",
-   "gender": "HE",
+   "pid": 1083,
    "total_words": 27998,
    "total_questions": 393,
    "solo_questions": 379,
@@ -1463,7 +1463,7 @@
   },
   {
    "name": "Алексей Жидких",
-   "gender": "HE",
+   "pid": 203,
    "total_words": 20501,
    "total_questions": 367,
    "solo_questions": 361,
@@ -1474,7 +1474,7 @@
   },
   {
    "name": "Михаил Серопян",
-   "gender": "HE",
+   "pid": 2735,
    "total_words": 32243,
    "total_questions": 492,
    "solo_questions": 466,
@@ -1485,7 +1485,7 @@
   },
   {
    "name": "Александр Андросов",
-   "gender": "HE",
+   "pid": 1716,
    "total_words": 30759,
    "total_questions": 630,
    "solo_questions": 625,
@@ -1496,7 +1496,7 @@
   },
   {
    "name": "Ренат Хайбуллин",
-   "gender": "HE",
+   "pid": 1428,
    "total_words": 44864,
    "total_questions": 931,
    "solo_questions": 888,
@@ -1507,7 +1507,7 @@
   },
   {
    "name": "Павел Ершов",
-   "gender": "HE",
+   "pid": 115,
    "total_words": 103360,
    "total_questions": 1735,
    "solo_questions": 1677,
@@ -1518,7 +1518,7 @@
   },
   {
    "name": "Юлия Дидбаридзе",
-   "gender": "HE",
+   "pid": 445,
    "total_words": 22911,
    "total_questions": 339,
    "solo_questions": 334,
@@ -1529,7 +1529,7 @@
   },
   {
    "name": "Сергей Николенко",
-   "gender": "HE",
+   "pid": 3318,
    "total_words": 43502,
    "total_questions": 844,
    "solo_questions": 759,
@@ -1540,7 +1540,7 @@
   },
   {
    "name": "Александр Лисянский",
-   "gender": "HE",
+   "pid": 226,
    "total_words": 104299,
    "total_questions": 2103,
    "solo_questions": 2060,
@@ -1551,7 +1551,7 @@
   },
   {
    "name": "Алексей Гноевых",
-   "gender": "HE",
+   "pid": 524,
    "total_words": 41895,
    "total_questions": 1052,
    "solo_questions": 991,
@@ -1562,7 +1562,7 @@
   },
   {
    "name": "Сергей Шорин",
-   "gender": "HE",
+   "pid": 435,
    "total_words": 22570,
    "total_questions": 515,
    "solo_questions": 414,
@@ -1573,7 +1573,7 @@
   },
   {
    "name": "Дана Яковенко",
-   "gender": "HE",
+   "pid": 2202,
    "total_words": 24806,
    "total_questions": 469,
    "solo_questions": 436,
@@ -1584,7 +1584,7 @@
   },
   {
    "name": "Алексей Трефилов",
-   "gender": "HE",
+   "pid": 566,
    "total_words": 60840,
    "total_questions": 1164,
    "solo_questions": 956,
@@ -1595,7 +1595,7 @@
   },
   {
    "name": "Вадим Калашников",
-   "gender": "HE",
+   "pid": 1609,
    "total_words": 36730,
    "total_questions": 833,
    "solo_questions": 824,
@@ -1606,7 +1606,7 @@
   },
   {
    "name": "Алекс Покрас",
-   "gender": "HE",
+   "pid": 305,
    "total_words": 24934,
    "total_questions": 465,
    "solo_questions": 404,
@@ -1617,7 +1617,7 @@
   },
   {
    "name": "Юрий Выменец",
-   "gender": "HE",
+   "pid": 707,
    "total_words": 101907,
    "total_questions": 2387,
    "solo_questions": 1933,
@@ -1628,7 +1628,7 @@
   },
   {
    "name": "Александр Макаров",
-   "gender": "HE",
+   "pid": 1690,
    "total_words": 40062,
    "total_questions": 665,
    "solo_questions": 604,
@@ -1639,7 +1639,7 @@
   },
   {
    "name": "Вадим Молдавский",
-   "gender": "HE",
+   "pid": 3023,
    "total_words": 22783,
    "total_questions": 445,
    "solo_questions": 394,
@@ -1650,7 +1650,7 @@
   },
   {
    "name": "Илья Бер",
-   "gender": "HE",
+   "pid": 582,
    "total_words": 20534,
    "total_questions": 389,
    "solo_questions": 367,
@@ -1661,7 +1661,7 @@
   },
   {
    "name": "Игорь Колмаков",
-   "gender": "HE",
+   "pid": 257,
    "total_words": 62459,
    "total_questions": 982,
    "solo_questions": 883,
@@ -1672,7 +1672,7 @@
   },
   {
    "name": "Илья Немец",
-   "gender": "HE",
+   "pid": 199,
    "total_words": 38350,
    "total_questions": 672,
    "solo_questions": 640,
@@ -1683,7 +1683,7 @@
   },
   {
    "name": "Евгений Рубашкин",
-   "gender": "HE",
+   "pid": 4471,
    "total_words": 26261,
    "total_questions": 737,
    "solo_questions": 687,
@@ -1694,7 +1694,7 @@
   },
   {
    "name": "Александр Сидоренков",
-   "gender": "HE",
+   "pid": 120,
    "total_words": 174864,
    "total_questions": 3746,
    "solo_questions": 3652,
@@ -1705,7 +1705,7 @@
   },
   {
    "name": "Максим Руссо",
-   "gender": "HE",
+   "pid": 295,
    "total_words": 81179,
    "total_questions": 2081,
    "solo_questions": 2059,
@@ -1716,7 +1716,7 @@
   },
   {
    "name": "Алексей Пономарёв",
-   "gender": "HE",
+   "pid": 571,
    "total_words": 18736,
    "total_questions": 372,
    "solo_questions": 365,
@@ -1727,7 +1727,7 @@
   },
   {
    "name": "Ольга Хворова",
-   "gender": "HE",
+   "pid": 1354,
    "total_words": 72600,
    "total_questions": 3068,
    "solo_questions": 160,
@@ -1738,7 +1738,7 @@
   },
   {
    "name": "Игорь Тюнькин",
-   "gender": "HE",
+   "pid": 477,
    "total_words": 52419,
    "total_questions": 1082,
    "solo_questions": 1025,
@@ -1749,7 +1749,7 @@
   },
   {
    "name": "Андрий Бойко",
-   "gender": "HE",
+   "pid": 553,
    "total_words": 48886,
    "total_questions": 950,
    "solo_questions": 932,
@@ -1760,7 +1760,7 @@
   },
   {
    "name": "Мишель Матвеев",
-   "gender": "HE",
+   "pid": 141,
    "total_words": 203243,
    "total_questions": 4303,
    "solo_questions": 4138,
@@ -1771,7 +1771,7 @@
   },
   {
    "name": "Андрей Кузьма",
-   "gender": "HE",
+   "pid": 3274,
    "total_words": 60724,
    "total_questions": 1969,
    "solo_questions": 1302,
@@ -1782,7 +1782,7 @@
   },
   {
    "name": "Наталья Кудряшова",
-   "gender": "HE",
+   "pid": 705,
    "total_words": 56513,
    "total_questions": 1381,
    "solo_questions": 1138,
@@ -1793,7 +1793,7 @@
   },
   {
    "name": "Борис Моносов",
-   "gender": "HE",
+   "pid": 71,
    "total_words": 171467,
    "total_questions": 4550,
    "solo_questions": 4328,
@@ -1804,7 +1804,7 @@
   },
   {
    "name": "Евгений Долженков",
-   "gender": "HE",
+   "pid": 964,
    "total_words": 22425,
    "total_questions": 323,
    "solo_questions": 316,
@@ -1815,7 +1815,7 @@
   },
   {
    "name": "Андрей Абрамов",
-   "gender": "HE",
+   "pid": 222,
    "total_words": 55101,
    "total_questions": 888,
    "solo_questions": 864,
@@ -1826,7 +1826,7 @@
   },
   {
    "name": "Павел Петров",
-   "gender": "HE",
+   "pid": 303,
    "total_words": 26334,
    "total_questions": 698,
    "solo_questions": 672,
@@ -1837,7 +1837,7 @@
   },
   {
    "name": "Михаил Локшин",
-   "gender": "HE",
+   "pid": 10,
    "total_words": 52470,
    "total_questions": 1076,
    "solo_questions": 1002,
@@ -1848,7 +1848,7 @@
   },
   {
    "name": "Григорий Остров",
-   "gender": "HE",
+   "pid": 150,
    "total_words": 49911,
    "total_questions": 1329,
    "solo_questions": 1268,
@@ -1859,7 +1859,7 @@
   },
   {
    "name": "Максим Поташев",
-   "gender": "HE",
+   "pid": 198,
    "total_words": 55091,
    "total_questions": 1427,
    "solo_questions": 1399,
@@ -1870,7 +1870,7 @@
   },
   {
    "name": "Татьяна Лещенко",
-   "gender": "HE",
+   "pid": 223,
    "total_words": 120754,
    "total_questions": 2111,
    "solo_questions": 2077,
@@ -1881,7 +1881,7 @@
   },
   {
    "name": "Борис Гуревич",
-   "gender": "HE",
+   "pid": 771,
    "total_words": 30334,
    "total_questions": 633,
    "solo_questions": 611,
@@ -1892,7 +1892,7 @@
   },
   {
    "name": "Алексей Паевский",
-   "gender": "HE",
+   "pid": 1353,
    "total_words": 124145,
    "total_questions": 4480,
    "solo_questions": 1570,
@@ -1903,7 +1903,7 @@
   },
   {
    "name": "Михаил Карпук",
-   "gender": "HE",
+   "pid": 416,
    "total_words": 78680,
    "total_questions": 1283,
    "solo_questions": 1276,
@@ -1914,7 +1914,7 @@
   },
   {
    "name": "Валерий Криволапов",
-   "gender": "HE",
+   "pid": 118,
    "total_words": 37290,
    "total_questions": 825,
    "solo_questions": 783,
@@ -1925,7 +1925,7 @@
   },
   {
    "name": "Павел Аликин",
-   "gender": "HE",
+   "pid": 44,
    "total_words": 18760,
    "total_questions": 354,
    "solo_questions": 257,
@@ -1936,7 +1936,7 @@
   },
   {
    "name": "Илья Иванов",
-   "gender": "HE",
+   "pid": 121,
    "total_words": 19807,
    "total_questions": 409,
    "solo_questions": 385,
@@ -1947,7 +1947,7 @@
   },
   {
    "name": "Владимир Сушков",
-   "gender": "HE",
+   "pid": 170,
    "total_words": 38040,
    "total_questions": 593,
    "solo_questions": 581,
@@ -1958,7 +1958,7 @@
   },
   {
    "name": "Константин Костенко",
-   "gender": "HE",
+   "pid": 4,
    "total_words": 19876,
    "total_questions": 402,
    "solo_questions": 399,
@@ -1969,7 +1969,7 @@
   },
   {
    "name": "Сергей Амлинский",
-   "gender": "HE",
+   "pid": 372,
    "total_words": 22611,
    "total_questions": 460,
    "solo_questions": 434,
@@ -1980,7 +1980,7 @@
   },
   {
    "name": "Евгений Лешкович",
-   "gender": "HE",
+   "pid": 15,
    "total_words": 19246,
    "total_questions": 306,
    "solo_questions": 303,
@@ -1991,7 +1991,7 @@
   },
   {
    "name": "Алексей Полевой",
-   "gender": "HE",
+   "pid": 66,
    "total_words": 96285,
    "total_questions": 1780,
    "solo_questions": 1696,
@@ -2002,7 +2002,7 @@
   },
   {
    "name": "Григорий Зырянов",
-   "gender": "HE",
+   "pid": 651,
    "total_words": 20487,
    "total_questions": 407,
    "solo_questions": 401,
@@ -2013,7 +2013,7 @@
   },
   {
    "name": "Александр Пономарёв",
-   "gender": "HE",
+   "pid": 646,
    "total_words": 22730,
    "total_questions": 516,
    "solo_questions": 492,
@@ -2024,7 +2024,7 @@
   },
   {
    "name": "Антон Волосатов",
-   "gender": "HE",
+   "pid": 430,
    "total_words": 19199,
    "total_questions": 344,
    "solo_questions": 323,
@@ -2035,7 +2035,7 @@
   },
   {
    "name": "Иван Семушин",
-   "gender": "HE",
+   "pid": 474,
    "total_words": 24073,
    "total_questions": 522,
    "solo_questions": 504,
@@ -2046,7 +2046,7 @@
   },
   {
    "name": "Максим Карачун",
-   "gender": "HE",
+   "pid": 265,
    "total_words": 23078,
    "total_questions": 445,
    "solo_questions": 428,
@@ -2057,7 +2057,7 @@
   },
   {
    "name": "Игорь Коршовский",
-   "gender": "HE",
+   "pid": 184,
    "total_words": 17535,
    "total_questions": 321,
    "solo_questions": 308,
@@ -2068,7 +2068,7 @@
   },
   {
    "name": "Александр Иванов",
-   "gender": "HE",
+   "pid": 1258,
    "total_words": 22953,
    "total_questions": 390,
    "solo_questions": 361,
@@ -2079,7 +2079,7 @@
   },
   {
    "name": "Андрей Черданцев",
-   "gender": "HE",
+   "pid": 1220,
    "total_words": 43574,
    "total_questions": 984,
    "solo_questions": 897,
@@ -2090,7 +2090,7 @@
   },
   {
    "name": "Александр Шапиро",
-   "gender": "HE",
+   "pid": 1722,
    "total_words": 20691,
    "total_questions": 442,
    "solo_questions": 355,
@@ -2101,7 +2101,7 @@
   },
   {
    "name": "Николай Крапиль",
-   "gender": "HE",
+   "pid": 82,
    "total_words": 28873,
    "total_questions": 508,
    "solo_questions": 469,
@@ -2112,7 +2112,7 @@
   },
   {
    "name": "Михаил Иванов",
-   "gender": "HE",
+   "pid": 40,
    "total_words": 216504,
    "total_questions": 3026,
    "solo_questions": 2989,
@@ -2123,7 +2123,7 @@
   },
   {
    "name": "Руслан Хаиткулов",
-   "gender": "HE",
+   "pid": 43,
    "total_words": 19280,
    "total_questions": 334,
    "solo_questions": 320,
@@ -2134,7 +2134,7 @@
   },
   {
    "name": "Владислав Говердовский",
-   "gender": "HE",
+   "pid": 298,
    "total_words": 21465,
    "total_questions": 401,
    "solo_questions": 384,
@@ -2145,7 +2145,7 @@
   },
   {
    "name": "Александра Индрицан",
-   "gender": "HE",
+   "pid": 836,
    "total_words": 18212,
    "total_questions": 491,
    "solo_questions": 483,
@@ -2156,7 +2156,7 @@
   },
   {
    "name": "Виктория Маландина",
-   "gender": "HE",
+   "pid": 196,
    "total_words": 17131,
    "total_questions": 216,
    "solo_questions": 154,
@@ -2167,7 +2167,7 @@
   },
   {
    "name": "Ваан Калайджян",
-   "gender": "HE",
+   "pid": 2598,
    "total_words": 18317,
    "total_questions": 406,
    "solo_questions": 394,
@@ -2178,7 +2178,7 @@
   },
   {
    "name": "Михаил Наугольнов",
-   "gender": "HE",
+   "pid": 175,
    "total_words": 18738,
    "total_questions": 273,
    "solo_questions": 257,
@@ -2189,7 +2189,7 @@
   },
   {
    "name": "Константин Таточенко",
-   "gender": "HE",
+   "pid": 87,
    "total_words": 17166,
    "total_questions": 276,
    "solo_questions": 272,
@@ -2200,7 +2200,7 @@
   },
   {
    "name": "Наталия Новыш",
-   "gender": "HE",
+   "pid": 77,
    "total_words": 17567,
    "total_questions": 291,
    "solo_questions": 259,
@@ -2211,7 +2211,7 @@
   },
   {
    "name": "Константин Мзареулов",
-   "gender": "HE",
+   "pid": 2723,
    "total_words": 16850,
    "total_questions": 827,
    "solo_questions": 827,
@@ -2222,7 +2222,7 @@
   },
   {
    "name": "Павел Клепиков",
-   "gender": "HE",
+   "pid": 13123,
    "total_words": 21993,
    "total_questions": 349,
    "solo_questions": 349,
@@ -2233,7 +2233,7 @@
   },
   {
    "name": "Сергей Виватенко",
-   "gender": "HE",
+   "pid": 1496,
    "total_words": 17590,
    "total_questions": 466,
    "solo_questions": 459,
@@ -2244,7 +2244,7 @@
   },
   {
    "name": "Станислав Утикеев",
-   "gender": "HE",
+   "pid": 65,
    "total_words": 17721,
    "total_questions": 210,
    "solo_questions": 197,
@@ -2255,7 +2255,7 @@
   },
   {
    "name": "Дмитрий Стрильчук",
-   "gender": "HE",
+   "pid": 1483,
    "total_words": 17576,
    "total_questions": 492,
    "solo_questions": 446,
@@ -2266,7 +2266,7 @@
   },
   {
    "name": "Владимир Печерога",
-   "gender": "HE",
+   "pid": 660,
    "total_words": 15933,
    "total_questions": 327,
    "solo_questions": 264,
@@ -2277,7 +2277,7 @@
   },
   {
    "name": "Константин Кноп",
-   "gender": "HE",
+   "pid": 1637,
    "total_words": 18658,
    "total_questions": 343,
    "solo_questions": 250,
@@ -2288,7 +2288,7 @@
   },
   {
    "name": "Алексей Файнбурд",
-   "gender": "HE",
+   "pid": 201,
    "total_words": 17545,
    "total_questions": 324,
    "solo_questions": 317,
@@ -2299,7 +2299,7 @@
   },
   {
    "name": "Дмитрий Свинтицкий",
-   "gender": "HE",
+   "pid": 525,
    "total_words": 17693,
    "total_questions": 441,
    "solo_questions": 402,
@@ -2310,7 +2310,7 @@
   },
   {
    "name": "Филипп Тучак",
-   "gender": "HE",
+   "pid": 1140,
    "total_words": 17359,
    "total_questions": 250,
    "solo_questions": 245,
@@ -2321,7 +2321,7 @@
   },
   {
    "name": "Юрий Разумов",
-   "gender": "HE",
+   "pid": 408,
    "total_words": 17981,
    "total_questions": 304,
    "solo_questions": 302,
@@ -2332,7 +2332,7 @@
   },
   {
    "name": "Владимир Белкин",
-   "gender": "HE",
+   "pid": 1244,
    "total_words": 15532,
    "total_questions": 322,
    "solo_questions": 318,
@@ -2343,7 +2343,7 @@
   },
   {
    "name": "Ярослав Косарев",
-   "gender": "HE",
+   "pid": 627,
    "total_words": 18753,
    "total_questions": 347,
    "solo_questions": 341,
@@ -2354,7 +2354,7 @@
   },
   {
    "name": "Кирилл Богловский",
-   "gender": "HE",
+   "pid": 1478,
    "total_words": 18425,
    "total_questions": 426,
    "solo_questions": 370,
@@ -2365,7 +2365,7 @@
   },
   {
    "name": "Владимир Грамагин",
-   "gender": "HE",
+   "pid": 219,
    "total_words": 16984,
    "total_questions": 329,
    "solo_questions": 305,
@@ -2376,7 +2376,7 @@
   },
   {
    "name": "Игорь Кулешов",
-   "gender": "HE",
+   "pid": 1095,
    "total_words": 19563,
    "total_questions": 252,
    "solo_questions": 245,
@@ -2387,7 +2387,7 @@
   },
   {
    "name": "Аркадий Рух",
-   "gender": "HE",
+   "pid": 843,
    "total_words": 16384,
    "total_questions": 300,
    "solo_questions": 299,
@@ -2398,7 +2398,7 @@
   },
   {
    "name": "Татьяна Снеговская-Арш",
-   "gender": "HE",
+   "pid": 3466,
    "total_words": 17038,
    "total_questions": 349,
    "solo_questions": 318,
@@ -2409,7 +2409,7 @@
   },
   {
    "name": "Гай Кузнецов",
-   "gender": "HE",
+   "pid": 818,
    "total_words": 15202,
    "total_questions": 289,
    "solo_questions": 275,
@@ -2420,7 +2420,7 @@
   },
   {
    "name": "Евгений Старков",
-   "gender": "HE",
+   "pid": 504,
    "total_words": 16845,
    "total_questions": 320,
    "solo_questions": 236,
@@ -2431,7 +2431,7 @@
   },
   {
    "name": "Яна Азриэль",
-   "gender": "HE",
+   "pid": 156,
    "total_words": 17440,
    "total_questions": 356,
    "solo_questions": 346,
@@ -2442,7 +2442,7 @@
   },
   {
    "name": "Мария Трефилова",
-   "gender": "HE",
+   "pid": 2215,
    "total_words": 17165,
    "total_questions": 337,
    "solo_questions": 209,
@@ -2453,7 +2453,7 @@
   },
   {
    "name": "Ирина Величко",
-   "gender": "HE",
+   "pid": 2719,
    "total_words": 16193,
    "total_questions": 611,
    "solo_questions": 611,
@@ -2464,7 +2464,7 @@
   },
   {
    "name": "Виталий Бреев",
-   "gender": "HE",
+   "pid": 313,
    "total_words": 15737,
    "total_questions": 249,
    "solo_questions": 246,
@@ -2475,7 +2475,7 @@
   },
   {
    "name": "Илья Онскуль",
-   "gender": "HE",
+   "pid": 388,
    "total_words": 15080,
    "total_questions": 221,
    "solo_questions": 210,
@@ -2486,7 +2486,7 @@
   },
   {
    "name": "Лидия Иоффе",
-   "gender": "HE",
+   "pid": 886,
    "total_words": 17816,
    "total_questions": 338,
    "solo_questions": 308,
@@ -2497,7 +2497,7 @@
   },
   {
    "name": "Сергей Перехрест",
-   "gender": "HE",
+   "pid": 1329,
    "total_words": 17637,
    "total_questions": 371,
    "solo_questions": 368,
@@ -2508,7 +2508,7 @@
   },
   {
    "name": "Михаил Рыжок",
-   "gender": "HE",
+   "pid": 14,
    "total_words": 16023,
    "total_questions": 247,
    "solo_questions": 208,
@@ -2519,7 +2519,7 @@
   },
   {
    "name": "Вадим Данько",
-   "gender": "HE",
+   "pid": 1286,
    "total_words": 17160,
    "total_questions": 449,
    "solo_questions": 430,
@@ -2530,7 +2530,7 @@
   },
   {
    "name": "Лев Шмулевич",
-   "gender": "HE",
+   "pid": 3310,
    "total_words": 20691,
    "total_questions": 437,
    "solo_questions": 332,
@@ -2541,7 +2541,7 @@
   },
   {
    "name": "Олег Холодов",
-   "gender": "HE",
+   "pid": 819,
    "total_words": 16040,
    "total_questions": 322,
    "solo_questions": 279,
@@ -2552,7 +2552,7 @@
   },
   {
    "name": "Рузель Халиуллин",
-   "gender": "HE",
+   "pid": 331,
    "total_words": 16398,
    "total_questions": 221,
    "solo_questions": 217,
@@ -2563,7 +2563,7 @@
   },
   {
    "name": "Олег Фея",
-   "gender": "HE",
+   "pid": 732,
    "total_words": 16659,
    "total_questions": 285,
    "solo_questions": 278,
@@ -2574,7 +2574,7 @@
   },
   {
    "name": "Юрий Дзюбенко",
-   "gender": "HE",
+   "pid": 4885,
    "total_words": 17626,
    "total_questions": 364,
    "solo_questions": 348,
@@ -2585,7 +2585,7 @@
   },
   {
    "name": "Оксана Балазанова",
-   "gender": "HE",
+   "pid": 2701,
    "total_words": 12887,
    "total_questions": 242,
    "solo_questions": 230,
@@ -2596,7 +2596,7 @@
   },
   {
    "name": "Алексей Чирков",
-   "gender": "HE",
+   "pid": 1131,
    "total_words": 17020,
    "total_questions": 271,
    "solo_questions": 267,
@@ -2607,7 +2607,7 @@
   },
   {
    "name": "Евгений Постников",
-   "gender": "HE",
+   "pid": 230,
    "total_words": 15131,
    "total_questions": 320,
    "solo_questions": 317,
@@ -2618,7 +2618,7 @@
   },
   {
    "name": "Александр Бучацкий",
-   "gender": "HE",
+   "pid": 983,
    "total_words": 15464,
    "total_questions": 307,
    "solo_questions": 265,
@@ -2629,7 +2629,7 @@
   },
   {
    "name": "Егор Цалкович",
-   "gender": "HE",
+   "pid": 2358,
    "total_words": 15116,
    "total_questions": 249,
    "solo_questions": 221,
@@ -2640,7 +2640,7 @@
   },
   {
    "name": "Евгений Машеров",
-   "gender": "HE",
+   "pid": 4266,
    "total_words": 17042,
    "total_questions": 204,
    "solo_questions": 193,
@@ -2651,7 +2651,7 @@
   },
   {
    "name": "Татьяна Луговская",
-   "gender": "HE",
+   "pid": 1942,
    "total_words": 13120,
    "total_questions": 176,
    "solo_questions": 118,
@@ -2662,7 +2662,7 @@
   },
   {
    "name": "Максим Сидоров",
-   "gender": "HE",
+   "pid": 155,
    "total_words": 15782,
    "total_questions": 316,
    "solo_questions": 308,
@@ -2673,7 +2673,7 @@
   },
   {
    "name": "Сусанна Бровер",
-   "gender": "HE",
+   "pid": 246,
    "total_words": 14838,
    "total_questions": 285,
    "solo_questions": 256,
@@ -2684,7 +2684,7 @@
   },
   {
    "name": "Ольга Сарницкая",
-   "gender": "SE",
+   "pid": 355,
    "total_words": 14980,
    "total_questions": 206,
    "solo_questions": 200,
@@ -2695,7 +2695,7 @@
   },
   {
    "name": "Артём Савочкин",
-   "gender": "HE",
+   "pid": 11646,
    "total_words": 14825,
    "total_questions": 205,
    "solo_questions": 204,
@@ -2706,7 +2706,7 @@
   },
   {
    "name": "Юрий Загребельный",
-   "gender": "HE",
+   "pid": 102,
    "total_words": 15030,
    "total_questions": 312,
    "solo_questions": 277,
@@ -2717,7 +2717,7 @@
   },
   {
    "name": "Иван Киселёв",
-   "gender": "HE",
+   "pid": 348,
    "total_words": 16195,
    "total_questions": 219,
    "solo_questions": 219,
@@ -2728,7 +2728,7 @@
   },
   {
    "name": "Алексей Кононенко",
-   "gender": "HE",
+   "pid": 195,
    "total_words": 16157,
    "total_questions": 227,
    "solo_questions": 227,
@@ -2739,7 +2739,7 @@
   },
   {
    "name": "Павел Пашечко",
-   "gender": "HE",
+   "pid": 1960,
    "total_words": 17409,
    "total_questions": 295,
    "solo_questions": 280,
@@ -2750,7 +2750,7 @@
   },
   {
    "name": "Вадим Ефимов",
-   "gender": "HE",
+   "pid": 3246,
    "total_words": 15959,
    "total_questions": 335,
    "solo_questions": 317,
@@ -2761,7 +2761,7 @@
   },
   {
    "name": "Илья Фрейдкин",
-   "gender": "HE",
+   "pid": 202,
    "total_words": 15066,
    "total_questions": 206,
    "solo_questions": 194,
@@ -2772,7 +2772,7 @@
   },
   {
    "name": "Иван Стариков",
-   "gender": "HE",
+   "pid": 395,
    "total_words": 16701,
    "total_questions": 333,
    "solo_questions": 275,
@@ -2783,7 +2783,7 @@
   },
   {
    "name": "Николай Федоренко",
-   "gender": "HE",
+   "pid": 13494,
    "total_words": 15333,
    "total_questions": 223,
    "solo_questions": 211,
@@ -2794,7 +2794,7 @@
   },
   {
    "name": "Даниил Синельников",
-   "gender": "HE",
+   "pid": 283,
    "total_words": 14423,
    "total_questions": 306,
    "solo_questions": 272,
@@ -2805,7 +2805,7 @@
   },
   {
    "name": "Валерий Юдачёв",
-   "gender": "HE",
+   "pid": 436,
    "total_words": 12295,
    "total_questions": 198,
    "solo_questions": 191,
@@ -2816,7 +2816,7 @@
   },
   {
    "name": "Анушаван Аветисян",
-   "gender": "HE",
+   "pid": 75,
    "total_words": 12135,
    "total_questions": 214,
    "solo_questions": 191,
@@ -2827,7 +2827,7 @@
   },
   {
    "name": "Владимир Исаев",
-   "gender": "HE",
+   "pid": 3152,
    "total_words": 14847,
    "total_questions": 200,
    "solo_questions": 181,
@@ -2838,7 +2838,7 @@
   },
   {
    "name": "Денис Мамонтов",
-   "gender": "HE",
+   "pid": 1249,
    "total_words": 13075,
    "total_questions": 343,
    "solo_questions": 341,
@@ -2849,7 +2849,7 @@
   },
   {
    "name": "Вадим Яковлев",
-   "gender": "HE",
+   "pid": 734,
    "total_words": 12815,
    "total_questions": 220,
    "solo_questions": 218,
@@ -2860,7 +2860,7 @@
   },
   {
    "name": "Александра Брутер",
-   "gender": "HE",
+   "pid": 769,
    "total_words": 14822,
    "total_questions": 262,
    "solo_questions": 245,
@@ -2871,7 +2871,7 @@
   },
   {
    "name": "Александр Колышкин",
-   "gender": "HE",
+   "pid": 2181,
    "total_words": 15824,
    "total_questions": 283,
    "solo_questions": 260,
@@ -2882,7 +2882,7 @@
   },
   {
    "name": "Андрей Ефремов",
-   "gender": "HE",
+   "pid": 316,
    "total_words": 13194,
    "total_questions": 279,
    "solo_questions": 263,
@@ -2893,7 +2893,7 @@
   },
   {
    "name": "Павел Шевченко",
-   "gender": "HE",
+   "pid": 2342,
    "total_words": 13756,
    "total_questions": 353,
    "solo_questions": 339,
@@ -2904,7 +2904,7 @@
   },
   {
    "name": "Александр Мищенко",
-   "gender": "HE",
+   "pid": 676,
    "total_words": 12668,
    "total_questions": 272,
    "solo_questions": 266,
@@ -2915,7 +2915,7 @@
   },
   {
    "name": "Алексей Морозов",
-   "gender": "HE",
+   "pid": 370,
    "total_words": 12965,
    "total_questions": 255,
    "solo_questions": 248,
@@ -2926,7 +2926,7 @@
   },
   {
    "name": "Владимир Улахович",
-   "gender": "HE",
+   "pid": 1347,
    "total_words": 13395,
    "total_questions": 273,
    "solo_questions": 270,
@@ -2937,7 +2937,7 @@
   },
   {
    "name": "Дмитрий Китаев",
-   "gender": "HE",
+   "pid": 124,
    "total_words": 12656,
    "total_questions": 247,
    "solo_questions": 234,
@@ -2948,7 +2948,7 @@
   },
   {
    "name": "Владимир Ковалев",
-   "gender": "HE",
+   "pid": 4071,
    "total_words": 12276,
    "total_questions": 223,
    "solo_questions": 176,
@@ -2959,7 +2959,7 @@
   },
   {
    "name": "Константин Колесник",
-   "gender": "HE",
+   "pid": 2489,
    "total_words": 15392,
    "total_questions": 374,
    "solo_questions": 370,
@@ -2970,7 +2970,7 @@
   },
   {
    "name": "Антон Губанов",
-   "gender": "HE",
+   "pid": 1163,
    "total_words": 15061,
    "total_questions": 375,
    "solo_questions": 349,
@@ -2981,7 +2981,7 @@
   },
   {
    "name": "Александр Карясов",
-   "gender": "HE",
+   "pid": 272,
    "total_words": 14858,
    "total_questions": 243,
    "solo_questions": 234,
@@ -2992,7 +2992,7 @@
   },
   {
    "name": "Артём Викторов",
-   "gender": "HE",
+   "pid": 538,
    "total_words": 16019,
    "total_questions": 329,
    "solo_questions": 310,
@@ -3003,7 +3003,7 @@
   },
   {
    "name": "Сергей Чистяков",
-   "gender": "HE",
+   "pid": 13113,
    "total_words": 13330,
    "total_questions": 213,
    "solo_questions": 212,
@@ -3014,7 +3014,7 @@
   },
   {
    "name": "Виталий Захарик",
-   "gender": "HE",
+   "pid": 281,
    "total_words": 14593,
    "total_questions": 283,
    "solo_questions": 281,
@@ -3025,7 +3025,7 @@
   },
   {
    "name": "Павел Малышев",
-   "gender": "HE",
+   "pid": 935,
    "total_words": 14748,
    "total_questions": 319,
    "solo_questions": 296,
@@ -3036,7 +3036,7 @@
   },
   {
    "name": "Расул Бабазаде",
-   "gender": "HE",
+   "pid": 914,
    "total_words": 13014,
    "total_questions": 233,
    "solo_questions": 223,
@@ -3047,7 +3047,7 @@
   },
   {
    "name": "Антон Гусаков",
-   "gender": "HE",
+   "pid": 556,
    "total_words": 13731,
    "total_questions": 204,
    "solo_questions": 204,
@@ -3058,7 +3058,7 @@
   },
   {
    "name": "Илья Кривохатько",
-   "gender": "HE",
+   "pid": 696,
    "total_words": 14863,
    "total_questions": 290,
    "solo_questions": 270,
@@ -3069,7 +3069,7 @@
   },
   {
    "name": "Павел Кадол",
-   "gender": "HE",
+   "pid": 419,
    "total_words": 12241,
    "total_questions": 175,
    "solo_questions": 160,
@@ -3080,7 +3080,7 @@
   },
   {
    "name": "Алексей Бигдан",
-   "gender": "HE",
+   "pid": 1774,
    "total_words": 14319,
    "total_questions": 298,
    "solo_questions": 297,
@@ -3091,7 +3091,7 @@
   },
   {
    "name": "Андрей Алдашев",
-   "gender": "HE",
+   "pid": 397,
    "total_words": 12735,
    "total_questions": 256,
    "solo_questions": 239,
@@ -3102,7 +3102,7 @@
   },
   {
    "name": "Ольга Ярославцева",
-   "gender": "HE",
+   "pid": 1951,
    "total_words": 13740,
    "total_questions": 280,
    "solo_questions": 259,
@@ -3113,7 +3113,7 @@
   },
   {
    "name": "Андрей Переварюха",
-   "gender": "HE",
+   "pid": 6517,
    "total_words": 11272,
    "total_questions": 213,
    "solo_questions": 195,
@@ -3124,7 +3124,7 @@
   },
   {
    "name": "Арутюн Арзуманян",
-   "gender": "HE",
+   "pid": 2871,
    "total_words": 14333,
    "total_questions": 236,
    "solo_questions": 236,
@@ -3135,7 +3135,7 @@
   },
   {
    "name": "Шойтан Лугоборский",
-   "gender": "HE",
+   "pid": 1671,
    "total_words": 12197,
    "total_questions": 87,
    "solo_questions": 42,
@@ -3146,7 +3146,7 @@
   },
   {
    "name": "Андрей Ленский",
-   "gender": "HE",
+   "pid": 1626,
    "total_words": 12407,
    "total_questions": 282,
    "solo_questions": 277,
@@ -3157,7 +3157,7 @@
   },
   {
    "name": "Алексей Скуратов",
-   "gender": "HE",
+   "pid": 70,
    "total_words": 13518,
    "total_questions": 252,
    "solo_questions": 251,
@@ -3168,7 +3168,7 @@
   },
   {
    "name": "Эрдни Урюбджиров",
-   "gender": "HE",
+   "pid": 216,
    "total_words": 12841,
    "total_questions": 242,
    "solo_questions": 241,
@@ -3179,7 +3179,7 @@
   },
   {
    "name": "Кирилл Карташов",
-   "gender": "HE",
+   "pid": 2185,
    "total_words": 15613,
    "total_questions": 267,
    "solo_questions": 249,
@@ -3190,7 +3190,7 @@
   },
   {
    "name": "Леонид Папков",
-   "gender": "HE",
+   "pid": 2317,
    "total_words": 12414,
    "total_questions": 192,
    "solo_questions": 182,
@@ -3201,7 +3201,7 @@
   },
   {
    "name": "Виталий Фёдоров",
-   "gender": "HE",
+   "pid": 95,
    "total_words": 11089,
    "total_questions": 238,
    "solo_questions": 193,
@@ -3212,7 +3212,7 @@
   },
   {
    "name": "Николай Левченко",
-   "gender": "HE",
+   "pid": 3158,
    "total_words": 12677,
    "total_questions": 219,
    "solo_questions": 195,
@@ -3223,7 +3223,7 @@
   },
   {
    "name": "Елена Каминская",
-   "gender": "HE",
+   "pid": 1549,
    "total_words": 13225,
    "total_questions": 347,
    "solo_questions": 342,
@@ -3234,7 +3234,7 @@
   },
   {
    "name": "Валерий Якубсон",
-   "gender": "HE",
+   "pid": 1043,
    "total_words": 14058,
    "total_questions": 279,
    "solo_questions": 269,
@@ -3245,7 +3245,7 @@
   },
   {
    "name": "Алексей Анискович",
-   "gender": "HE",
+   "pid": 12333,
    "total_words": 12256,
    "total_questions": 180,
    "solo_questions": 178,
@@ -3256,7 +3256,7 @@
   },
   {
    "name": "Александр Ескевич",
-   "gender": "HE",
+   "pid": 1213,
    "total_words": 12517,
    "total_questions": 329,
    "solo_questions": 323,
@@ -3267,7 +3267,7 @@
   },
   {
    "name": "Вячеслав Гаранович",
-   "gender": "HE",
+   "pid": 4321,
    "total_words": 11825,
    "total_questions": 220,
    "solo_questions": 211,
@@ -3278,7 +3278,7 @@
   },
   {
    "name": "Команда Drakony Jmovirnosti",
-   "gender": "HE",
+   "pid": 3195,
    "total_words": 11517,
    "total_questions": 266,
    "solo_questions": 264,
@@ -3289,7 +3289,7 @@
   },
   {
    "name": "Андрей Хромов",
-   "gender": "HE",
+   "pid": 11651,
    "total_words": 11671,
    "total_questions": 187,
    "solo_questions": 171,
@@ -3300,7 +3300,7 @@
   },
   {
    "name": "Роман Мерзляков",
-   "gender": "HE",
+   "pid": 602,
    "total_words": 11163,
    "total_questions": 198,
    "solo_questions": 196,
@@ -3311,7 +3311,7 @@
   },
   {
    "name": "Максим Янке",
-   "gender": "HE",
+   "pid": 12470,
    "total_words": 14548,
    "total_questions": 231,
    "solo_questions": 231,
@@ -3322,7 +3322,7 @@
   },
   {
    "name": "Юрий Калякин",
-   "gender": "HE",
+   "pid": 190,
    "total_words": 12056,
    "total_questions": 285,
    "solo_questions": 271,
@@ -3333,7 +3333,7 @@
   },
   {
    "name": "Николай Гуляев",
-   "gender": "HE",
+   "pid": 2588,
    "total_words": 11517,
    "total_questions": 363,
    "solo_questions": 362,
@@ -3344,7 +3344,7 @@
   },
   {
    "name": "Любовь Лодман",
-   "gender": "HE",
+   "pid": 887,
    "total_words": 12908,
    "total_questions": 241,
    "solo_questions": 221,
@@ -3355,7 +3355,7 @@
   },
   {
    "name": "Вадим Раскумандрин",
-   "gender": "HE",
+   "pid": 176,
    "total_words": 10829,
    "total_questions": 227,
    "solo_questions": 222,
@@ -3366,7 +3366,7 @@
   },
   {
    "name": "Иван Карбовник",
-   "gender": "HE",
+   "pid": 309,
    "total_words": 11469,
    "total_questions": 246,
    "solo_questions": 245,
@@ -3377,7 +3377,7 @@
   },
   {
    "name": "Яков Логвинович",
-   "gender": "HE",
+   "pid": 15093,
    "total_words": 10756,
    "total_questions": 310,
    "solo_questions": 310,
@@ -3388,7 +3388,7 @@
   },
   {
    "name": "Денис Куринный",
-   "gender": "HE",
+   "pid": 1324,
    "total_words": 11193,
    "total_questions": 313,
    "solo_questions": 295,
@@ -3399,7 +3399,7 @@
   },
   {
    "name": "Михаил Петренко",
-   "gender": "HE",
+   "pid": 2637,
    "total_words": 12724,
    "total_questions": 279,
    "solo_questions": 273,
@@ -3410,7 +3410,7 @@
   },
   {
    "name": "Марина Межова",
-   "gender": "HE",
+   "pid": 81,
    "total_words": 10851,
    "total_questions": 203,
    "solo_questions": 185,
@@ -3421,7 +3421,7 @@
   },
   {
    "name": "Дарья Фирсова",
-   "gender": "HE",
+   "pid": 393,
    "total_words": 13748,
    "total_questions": 186,
    "solo_questions": 174,
@@ -3432,7 +3432,7 @@
   },
   {
    "name": "Павел Полухин",
-   "gender": "HE",
+   "pid": 9933,
    "total_words": 10963,
    "total_questions": 189,
    "solo_questions": 188,
@@ -3443,7 +3443,7 @@
   },
   {
    "name": "Галина Наумова",
-   "gender": "HE",
+   "pid": 1885,
    "total_words": 12381,
    "total_questions": 242,
    "solo_questions": 233,
@@ -3454,7 +3454,7 @@
   },
   {
    "name": "Андрей Акепсимайтис",
-   "gender": "HE",
+   "pid": 34,
    "total_words": 11382,
    "total_questions": 227,
    "solo_questions": 219,
@@ -3465,7 +3465,7 @@
   },
   {
    "name": "Илья Гнатышин",
-   "gender": "HE",
+   "pid": 603,
    "total_words": 10958,
    "total_questions": 164,
    "solo_questions": 158,
@@ -3476,7 +3476,7 @@
   },
   {
    "name": "Виталий Паутов",
-   "gender": "HE",
+   "pid": 783,
    "total_words": 11718,
    "total_questions": 182,
    "solo_questions": 169,
@@ -3487,7 +3487,7 @@
   },
   {
    "name": "Алексей Хмельков",
-   "gender": "HE",
+   "pid": 762,
    "total_words": 12175,
    "total_questions": 203,
    "solo_questions": 199,
@@ -3498,7 +3498,7 @@
   },
   {
    "name": "Андрей Шинкаренко",
-   "gender": "HE",
+   "pid": 12354,
    "total_words": 11696,
    "total_questions": 169,
    "solo_questions": 167,
@@ -3509,7 +3509,7 @@
   },
   {
    "name": "Дмитрий Голдов",
-   "gender": "HE",
+   "pid": 137,
    "total_words": 10677,
    "total_questions": 217,
    "solo_questions": 205,
@@ -3520,7 +3520,7 @@
   },
   {
    "name": "Светлана Бороздина",
-   "gender": "HE",
+   "pid": 4168,
    "total_words": 10504,
    "total_questions": 209,
    "solo_questions": 206,
@@ -3531,7 +3531,7 @@
   },
   {
    "name": "Татьяна Аудерская",
-   "gender": "HE",
+   "pid": 690,
    "total_words": 11659,
    "total_questions": 280,
    "solo_questions": 264,
@@ -3542,7 +3542,7 @@
   },
   {
    "name": "Алексей Кураев",
-   "gender": "HE",
+   "pid": 12305,
    "total_words": 11396,
    "total_questions": 181,
    "solo_questions": 176,
@@ -3553,7 +3553,7 @@
   },
   {
    "name": "Дмитрий Макаров",
-   "gender": "HE",
+   "pid": 11662,
    "total_words": 10879,
    "total_questions": 145,
    "solo_questions": 143,
@@ -3564,7 +3564,7 @@
   },
   {
    "name": "Александр Марков",
-   "gender": "HE",
+   "pid": 410,
    "total_words": 12675,
    "total_questions": 221,
    "solo_questions": 215,
@@ -3575,7 +3575,7 @@
   },
   {
    "name": "Алексей Баев",
-   "gender": "HE",
+   "pid": 590,
    "total_words": 11074,
    "total_questions": 264,
    "solo_questions": 250,
@@ -3586,7 +3586,7 @@
   },
   {
    "name": "Игорь Сиволоб",
-   "gender": "HE",
+   "pid": 1491,
    "total_words": 10626,
    "total_questions": 267,
    "solo_questions": 38,
@@ -3597,7 +3597,7 @@
   },
   {
    "name": "Людмила Медведская",
-   "gender": "HE",
+   "pid": 899,
    "total_words": 10534,
    "total_questions": 174,
    "solo_questions": 173,
@@ -3608,7 +3608,7 @@
   },
   {
    "name": "Дмитрий Дорожко",
-   "gender": "HE",
+   "pid": 468,
    "total_words": 11048,
    "total_questions": 179,
    "solo_questions": 178,
@@ -3619,7 +3619,7 @@
   },
   {
    "name": "Виталий Дубровнер",
-   "gender": "HE",
+   "pid": 2198,
    "total_words": 13808,
    "total_questions": 224,
    "solo_questions": 214,
@@ -3630,7 +3630,7 @@
   },
   {
    "name": "Григорий Смыслов",
-   "gender": "HE",
+   "pid": 2785,
    "total_words": 11851,
    "total_questions": 226,
    "solo_questions": 185,
@@ -3641,7 +3641,7 @@
   },
   {
    "name": "Владислав Пристинский",
-   "gender": "HE",
+   "pid": 586,
    "total_words": 11182,
    "total_questions": 346,
    "solo_questions": 345,
@@ -3652,7 +3652,7 @@
   },
   {
    "name": "Евгений Левин",
-   "gender": "HE",
+   "pid": 3824,
    "total_words": 11586,
    "total_questions": 227,
    "solo_questions": 224,
@@ -3663,7 +3663,7 @@
   },
   {
    "name": "Дмитрий Родионов",
-   "gender": "HE",
+   "pid": 308,
    "total_words": 10348,
    "total_questions": 178,
    "solo_questions": 168,
@@ -3674,7 +3674,7 @@
   },
   {
    "name": "Александр Мизинов",
-   "gender": "HE",
+   "pid": 1426,
    "total_words": 10569,
    "total_questions": 242,
    "solo_questions": 236,
@@ -3685,7 +3685,7 @@
   },
   {
    "name": "Георгий Талисайнен",
-   "gender": "HE",
+   "pid": 12268,
    "total_words": 10409,
    "total_questions": 187,
    "solo_questions": 180,
@@ -3696,7 +3696,7 @@
   },
   {
    "name": "Константин Смолий",
-   "gender": "HE",
+   "pid": 3184,
    "total_words": 12225,
    "total_questions": 235,
    "solo_questions": 217,
@@ -3707,7 +3707,7 @@
   },
   {
    "name": "Дмитрий Пономарёв",
-   "gender": "HE",
+   "pid": 471,
    "total_words": 10130,
    "total_questions": 153,
    "solo_questions": 142,
@@ -3718,7 +3718,7 @@
   },
   {
    "name": "Василий Богатов",
-   "gender": "HE",
+   "pid": 2597,
    "total_words": 10446,
    "total_questions": 154,
    "solo_questions": 130,
@@ -3729,7 +3729,7 @@
   },
   {
    "name": "Илья Орлов",
-   "gender": "HE",
+   "pid": 12288,
    "total_words": 11241,
    "total_questions": 182,
    "solo_questions": 175,
@@ -3740,7 +3740,7 @@
   },
   {
    "name": "Юрий Козьмин",
-   "gender": "HE",
+   "pid": 296,
    "total_words": 12022,
    "total_questions": 237,
    "solo_questions": 217,
@@ -3751,7 +3751,7 @@
   },
   {
    "name": "Юлия Гафнер",
-   "gender": "HE",
+   "pid": 3912,
    "total_words": 11915,
    "total_questions": 271,
    "solo_questions": 199,
@@ -3762,7 +3762,7 @@
   },
   {
    "name": "Александр Гринберг",
-   "gender": "HE",
+   "pid": 11705,
    "total_words": 19328,
    "total_questions": 236,
    "solo_questions": 232,
@@ -3773,7 +3773,7 @@
   },
   {
    "name": "Наташа Яковлева",
-   "gender": "SE",
+   "pid": 423,
    "total_words": 10748,
    "total_questions": 145,
    "solo_questions": 136,
@@ -3784,7 +3784,7 @@
   },
   {
    "name": "Роман Оркодашвили",
-   "gender": "HE",
+   "pid": 579,
    "total_words": 10710,
    "total_questions": 171,
    "solo_questions": 111,
@@ -3795,7 +3795,7 @@
   },
   {
    "name": "Юрий Шатц",
-   "gender": "HE",
+   "pid": 3327,
    "total_words": 11520,
    "total_questions": 222,
    "solo_questions": 199,
@@ -3806,7 +3806,7 @@
   },
   {
    "name": "Александр Мосягин",
-   "gender": "HE",
+   "pid": 22,
    "total_words": 10407,
    "total_questions": 154,
    "solo_questions": 151,
@@ -3817,7 +3817,7 @@
   },
   {
    "name": "Георгий Гладков",
-   "gender": "HE",
+   "pid": 1494,
    "total_words": 10300,
    "total_questions": 208,
    "solo_questions": 193,
@@ -3828,7 +3828,7 @@
   },
   {
    "name": "Вадим Тух",
-   "gender": "HE",
+   "pid": 135,
    "total_words": 11569,
    "total_questions": 128,
    "solo_questions": 126,
@@ -3839,7 +3839,7 @@
   },
   {
    "name": "Елена Ганькова",
-   "gender": "HE",
+   "pid": 2514,
    "total_words": 10111,
    "total_questions": 133,
    "solo_questions": 100,
@@ -3850,7 +3850,7 @@
   },
   {
    "name": "Алик Палатник",
-   "gender": "HE",
+   "pid": 1435,
    "total_words": 10623,
    "total_questions": 206,
    "solo_questions": 145,
@@ -3861,7 +3861,7 @@
   },
   {
    "name": "Максим Кухтин",
-   "gender": "HE",
+   "pid": 2281,
    "total_words": 12181,
    "total_questions": 327,
    "solo_questions": 326,
@@ -3872,7 +3872,7 @@
   },
   {
    "name": "Евгения Шмулевич",
-   "gender": "HE",
+   "pid": 3312,
    "total_words": 11117,
    "total_questions": 222,
    "solo_questions": 115,
@@ -3883,7 +3883,7 @@
   },
   {
    "name": "Дмитрий Рутштейн",
-   "gender": "HE",
+   "pid": 888,
    "total_words": 11766,
    "total_questions": 173,
    "solo_questions": 165,
@@ -3894,7 +3894,7 @@
   },
   {
    "name": "Денис Галиакберов",
-   "gender": "HE",
+   "pid": 945,
    "total_words": 10648,
    "total_questions": 190,
    "solo_questions": 188,
@@ -3905,7 +3905,7 @@
   },
   {
    "name": "Григорий Львович",
-   "gender": "HE",
+   "pid": 148,
    "total_words": 10792,
    "total_questions": 194,
    "solo_questions": 185,
@@ -3916,7 +3916,7 @@
   },
   {
    "name": "Станислав Попов",
-   "gender": "HE",
+   "pid": 2453,
    "total_words": 10303,
    "total_questions": 191,
    "solo_questions": 156,
@@ -3927,7 +3927,7 @@
   },
   {
    "name": "Фёдор Журавлёв",
-   "gender": "HE",
+   "pid": 13403,
    "total_words": 10117,
    "total_questions": 156,
    "solo_questions": 155,
@@ -3938,7 +3938,7 @@
   },
   {
    "name": "Илья Филатов",
-   "gender": "HE",
+   "pid": 1259,
    "total_words": 11001,
    "total_questions": 289,
    "solo_questions": 285,
@@ -3949,7 +3949,7 @@
   },
   {
    "name": "Андрей Волыхов",
-   "gender": "HE",
+   "pid": 2160,
    "total_words": 10081,
    "total_questions": 245,
    "solo_questions": 223,
