@@ -12,7 +12,7 @@ import json, os
 HERE = os.path.dirname(__file__); ROOT = os.path.join(HERE, "..")
 def load(n): return json.load(open(os.path.join(ROOT, n)))
 report = load("report.json"); coauthors = load("coauthors.json")
-years = load("years.json"); cliches = load("cliches.json")
+years = load("years.json"); cliches = load("cliches.json"); stoplist = load("stoplist.json")
 
 NAV = [("index.html", "Рейтинг"), ("years.html", "Слово года"),
        ("coauthors.html", "Соавторы"), ("cliches.html", "Штампы"),
@@ -244,6 +244,9 @@ def build_years():
 .yn{font-family:var(--pixel);font-size:16px;color:var(--maze)}
 .big{font-size:20px;font-weight:700;color:var(--accent)}
 .kv{color:var(--muted);font-size:12.5px;margin-top:2px}.kv b{color:var(--text)}
+details.excl{background:var(--panel);border:2px solid var(--maze);border-radius:8px;padding:10px 14px;margin:8px 0 18px;box-shadow:4px 4px 0 var(--shadow)}
+details.excl summary{cursor:pointer;font-weight:700;color:var(--accent)}
+details.excl .chip{font-size:12px;padding:2px 7px}
 """
     body = """
 <h2>Слово, имя и место года в ЧГК</h2>
@@ -253,8 +256,20 @@ def build_years():
 <p class="lead muted">Видно эпохи: <b>90-е</b> — античность («римлянин», «грек»); <b>2020</b> —
 «коронавирус», <b>2021</b> — «пандемия», <b>2022</b> — «ведьмак», <b>2025</b> — «нейросеть».
 А «место года» почти всегда спортивное: Ванкувер (2010), Сочи (2014), Лестер (2017), Ливерпуль (2019).</p>
+__EXCL__
 <div id="list"></div>
 """
+    meta_chips = "".join(f'<span class="chip">{w}</span>' for w in stoplist["meta_words"])
+    stop_chips = "".join(f'<span class="chip">{w}</span>' for w in stoplist["stop_words"])
+    excl = (f'<details class="excl"><summary>Какие слова мы не учитываем ({len(stoplist["meta_words"])} технических + '
+            f'{len(stoplist["stop_words"])} служебных) — клик</summary>'
+            '<p class="muted" style="margin-top:8px">Технический и форматный жаргон ЧГК (икс, замена, '
+            'раздатка, бескрылка, синхрон, названия носителей и жанров) — выкидываем, чтобы «слово года» '
+            'было про содержание, а не про механику вопроса:</p>'
+            f'<div>{meta_chips}</div>'
+            '<p class="muted" style="margin-top:12px">И служебные слова (предлоги, местоимения, союзы):</p>'
+            f'<div>{stop_chips}</div></details>')
+    body = body.replace("__EXCL__", excl)
     script = """
 <script>
 const Y=__YEARS__.years;const fmt=n=>n.toLocaleString('ru-RU');
@@ -318,6 +333,13 @@ def build_coauthors():
 .cbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 10px}
 #gs{font-family:var(--mono);font-size:13px;background:var(--panel);border:2px solid var(--maze);color:var(--text);
   border-radius:6px;padding:9px 12px;min-width:220px}
+.tc{display:grid;grid-template-columns:34px 1fr auto auto;gap:10px 14px;align-items:baseline}
+.tc .r{font-family:var(--pixel);font-size:10px;color:var(--maze);text-align:right}
+.tc .nm a{color:var(--text);text-decoration:none;font-weight:700;border-bottom:1px solid transparent}
+.tc .nm a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.tc .v{font-family:var(--pixel);font-size:10px;color:var(--accent);white-space:nowrap}
+.tc .v small{font-family:var(--mono);color:var(--muted);font-size:11px;margin-left:4px}
+.tc .rowc{display:contents}.tc .rowc>*{padding:5px 0;border-bottom:1px dotted var(--line)}
 """
     body = """
 <h2>Кто с кем пишет вопросы</h2>
@@ -327,7 +349,18 @@ def build_coauthors():
 <div class="cbar"><input id="gs" type="search" placeholder="Найти автора в графе…" autocomplete="off"></div>
 <div id="wrapg"><canvas id="g"></canvas><div id="tip"></div></div>
 <p class="muted" id="gmeta" style="margin-top:10px"></p>
+<h2>У кого больше всего связей</h2>
+<p class="lead">По всей базе: с каким числом <b>разных</b> соавторов человек писал вопросы (и сколько всего
+совместных вопросов). Клик по имени — профиль.</p>
+<div class="tc">__TOPCONN__</div>
 """
+    tc = "".join(
+        f'<div class="rowc"><div class="r">{i+1}</div>'
+        f'<div class="nm"><a href="https://gotquestions.online/person/{x["pid"]}" target="_blank" rel="noopener">{x["name"]}</a></div>'
+        f'<div class="v">{x["partners"]}<small>соавторов</small></div>'
+        f'<div class="v">{x["joint"]}<small>совм.</small></div></div>'
+        for i, x in enumerate(coauthors.get("top_connected", [])))
+    body = body.replace("__TOPCONN__", tc)
     script = """
 <script>
 const GD=__COAUTHORS__;

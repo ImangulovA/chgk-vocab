@@ -38,7 +38,14 @@ META = set("""слово вопрос замена заменить цитата
 внимание многоточие пример изображение картинка фотография рисунок аудио видео текст строка символ
 знак логотип аббревиатура пара пропущенный некоторый пропуская гласный согласный слог фрагмент
 раунд альф альфа бета гамма дельта омега зет назва гэта пытанна больша льшуя кова знатокиада
-викторович""".split())
+викторович кс кса ксу ксом ксов ксова ксовый иксовый икснуть иксов иксом икса
+сайт отрывок эпизод сцена глава персонаж фильм роман книга рассказ повесть пьеса предложение
+фраза выражение пауза алфавит раскрутка тёзка тезка речь бланк секунда минута перевод оригинал
+вариант версия надпись подпись реплика заголовок абзац строчка строка тори анекдот эпиграмма
+песня стихотворение стих кадр сюжет монолог диалог
+бескрылка синхрон очко кавычка подсказка энциклопедия словарь газета журнал происхождение
+четверостишие швец юзер хаус зачёт зачет апелляция комментарий формулировка
+аллюзия отточие список заметка однофамилец героиня реминисценция определение цитирование""".split())
 
 import pymorphy3
 morph = pymorphy3.MorphAnalyzer()
@@ -182,7 +189,9 @@ def emit(raw):
         for w, z, yi, gw in logodds(c, n_i):
             it = {"lemma": w, "z": round(z, 2), "count": yi, "others": author_df[w]-1}
             k = kind(w)
-            if k == "none" and w not in STOP and w not in META and len(w) > 2:
+            if w in STOP or w in META or len(w) <= 2:
+                continue
+            if k == "none":
                 if len(style) < 10: style.append(it)
             elif k in ("surn", "name", "geo", "org"):
                 if len(theme) < 10: it["kind"] = k; theme.append(it)
@@ -205,10 +214,19 @@ def emit(raw):
     nodeset = {x for a, b, w in edges for x in (a, b)}
     nodes = [{"id": i, "name": node_name.get(i, "?"), "pid": i, "q": node_q[i], "deg": deg[i]}
              for i in nodeset]
+    # топ «у кого больше всего связей» — по ВСЕМ парам соавторства (любой вес)
+    partners = collections.defaultdict(set); joint = collections.Counter()
+    for (a, b), wt in coauthor.items():
+        partners[a].add(b); partners[b].add(a); joint[a] += wt; joint[b] += wt
+    top_conn = sorted(partners, key=lambda i: (-len(partners[i]), -joint[i]))[:30]
+    top_connected = [{"name": node_name.get(i, "?"), "pid": i,
+                      "partners": len(partners[i]), "joint": joint[i], "q": node_q[i]}
+                     for i in top_conn]
     json.dump({"meta": {"wmin": wmin, "nodes": len(nodes), "edges": len(edges),
                         "total_pairs": len(coauthor),
                         "total_authors": len({x for p in coauthor for x in p})},
-               "nodes": nodes, "edges": [{"a": a, "b": b, "w": w} for a, b, w in edges]},
+               "nodes": nodes, "edges": [{"a": a, "b": b, "w": w} for a, b, w in edges],
+               "top_connected": top_connected},
               open(os.path.join(ROOT, "coauthors.json"), "w"),
               ensure_ascii=False, separators=(",", ":"))
     print(f"coauthors.json: wmin={wmin} nodes={len(nodes)} edges={len(edges)}")
@@ -252,6 +270,11 @@ def emit(raw):
               open(os.path.join(ROOT, "cliches.json"), "w"),
               ensure_ascii=False, separators=(",", ":"))
     print("cliches.json written")
+
+    json.dump({"meta_words": sorted(META), "stop_words": sorted(STOP)},
+              open(os.path.join(ROOT, "stoplist.json"), "w"),
+              ensure_ascii=False, separators=(",", ":"))
+    print(f"stoplist.json written (meta={len(META)} stop={len(STOP)})")
 
     print("\n=== Борис Бурда ===")
     b = displayed.get("Борис Бурда")
