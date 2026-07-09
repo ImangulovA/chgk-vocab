@@ -186,19 +186,28 @@ def emit(raw):
     for c in author_lemma.values():
         for w in c: author_df[w] += 1
     Nd = len(author_lemma)
-    vocab_k = {w for w, df in author_df.items()
-               if 2 <= df <= 0.6 * Nd and w not in STOP and w not in META and kind(w) == "none"}
-    idf = {w: math.log(Nd / author_df[w]) for w in vocab_k}
-    vecs = {}
-    for nm, c in author_lemma.items():
-        v = {w: math.log(1 + cnt) * idf[w] for w, cnt in c.items() if w in vocab_k}
-        vecs[nm] = (v, math.sqrt(sum(x*x for x in v.values())) or 1.0)
+    # «стилевой отпечаток» автора = вектор положительных z (weighted log-odds) по
+    # нарицательным словам, которыми он ВЫДЕЛЯЕТСЯ. Косинус таких отпечатков даёт
+    # «пишут в одной манере», а не «оба много писали»: плодовитые авторы больше
+    # не выпадают в соседи всем подряд, т.к. сравниваем характерность, а не объём.
+    def fingerprint(c, n_i):
+        v = {}
+        for w, z, yi, gw in logodds(c, n_i, min_i=3):
+            if z <= 1.0: break                      # отсортировано по убыванию z
+            if kind(w) != "none" or w in STOP or w in META or len(w) <= 2: continue
+            if author_df[w] < 2: continue           # слово должно встречаться не у одного
+            v[w] = z
+            if len(v) >= 120: break
+        return v, (math.sqrt(sum(x * x for x in v.values())) or 1.0)
+    FP = {nm: fingerprint(c, sum(c.values())) for nm, c in author_lemma.items()}
     def kindred(nm):
-        vi, ni = vecs[nm]; sims = []
-        for nm2, (vj, nj) in vecs.items():
-            if nm2 == nm: continue
+        vi, ni = FP[nm]; sims = []
+        for nm2, (vj, nj) in FP.items():
+            if nm2 == nm or not vj: continue
             a, b = (vi, vj) if len(vi) < len(vj) else (vj, vi)
-            sims.append((nm2, sum(a[w]*b.get(w, 0.0) for w in a) / (ni*nj)))
+            dot = sum(val * b.get(w, 0.0) for w, val in a.items())
+            if dot > 0:
+                sims.append((nm2, dot / (ni * nj)))
         sims.sort(key=lambda x: -x[1])
         return [{"name": s[0], "pid": displayed[s[0]]["pid"], "sim": round(s[1], 3)}
                 for s in sims[:3]]
