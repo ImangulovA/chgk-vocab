@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Как считаем — CHGK Lexicon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('chgk-theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+:root{--maze:#2A3FE5;--pac:#FFD400;--pink:#F4B9B0;
+  --pixel:'Press Start 2P',monospace;--mono:'Space Mono','JetBrains Mono',ui-monospace,Menlo,monospace;}
+html[data-theme="light"]{--bg:#FBFBF4;--panel:#FFFFFF;--text:#111827;--muted:#5b6472;
+  --pellet:#c7cef0;--accent:#2A3FE5;--logo-shadow:#FFD400;--shadow:#dfe2f5;
+  --fill1:#E0A800;--fill2:#FFD400;--pac-shadow:rgba(0,0,0,.28);--line:#e3e6f2;--chip:#eef0fb;}
+html[data-theme="dark"]{--bg:#000000;--panel:#0a0d1a;--text:#F5F7FA;--muted:#8b93a7;
+  --pellet:#3a4470;--accent:#FFD400;--logo-shadow:#2A3FE5;--shadow:#1a1f4d;
+  --fill1:#8a7400;--fill2:#FFD400;--pac-shadow:transparent;--line:#1a1f4d;--chip:#141a30;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;
+  line-height:1.55;background-image:radial-gradient(var(--pellet) 1px,transparent 1px);
+  background-size:22px 22px}
+.wrap{max-width:980px;margin:0 auto;padding:22px 18px 90px}
+a{color:var(--accent)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-family:var(--pixel);color:var(--accent);font-size:22px;line-height:1.35;letter-spacing:1px;
+  margin:0;text-shadow:3px 3px 0 var(--logo-shadow);text-decoration:none}
+.logo .ghost{color:var(--pink)}
+.theme{font-family:var(--pixel);font-size:10px;cursor:pointer;white-space:nowrap;background:var(--panel);
+  color:var(--accent);border:2px solid var(--maze);border-radius:6px;padding:9px 10px;box-shadow:3px 3px 0 var(--shadow)}
+.theme:focus-visible{outline:3px solid var(--pac);outline-offset:2px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+nav a{font-family:var(--pixel);font-size:10px;text-decoration:none;color:var(--text);
+  background:var(--panel);border:2px solid var(--maze);border-radius:6px;padding:8px 10px}
+nav a.on{background:var(--maze);color:#fff}
+nav a:hover{color:var(--pink)}
+.links{display:flex;flex-wrap:wrap;gap:8px 14px;margin:6px 0 16px;font-size:12.5px}
+.links a{color:var(--accent);text-decoration:none;font-weight:700;border-bottom:2px dotted var(--maze);padding-bottom:1px}
+.links a:hover{color:var(--pink)}
+h2{font-family:var(--pixel);font-size:15px;color:var(--accent);margin:26px 0 12px;line-height:1.4}
+.lead{color:var(--text);max-width:720px}.lead b{color:var(--accent)}
+.muted{color:var(--muted)}
+.foot{color:var(--muted);font-size:12.5px;margin-top:38px;border-top:2px dotted var(--maze);padding-top:18px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 22px}
+.stat{background:var(--panel);border:3px solid var(--maze);border-radius:8px;padding:12px 16px;min-width:130px;box-shadow:4px 4px 0 var(--shadow)}
+.stat .n{font-family:var(--pixel);font-size:18px;color:var(--accent)}
+.stat .l{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-top:8px}
+.chip{display:inline-flex;align-items:baseline;gap:6px;background:var(--chip);border:1px solid var(--line);
+  border-radius:6px;padding:4px 9px;margin:3px 4px 3px 0;font-size:13px}
+.chip b{color:var(--accent)}.chip small{color:var(--muted);font-size:10.5px}
+mark{background:var(--pac);color:#000;border-radius:3px;padding:0 2px}
+</style></head><body><div class="wrap">
+<div class="head"><a class="logo" href="index.html">CHGK <span class="ghost">LEXICON</span></a>
+<button class="theme" id="theme" type="button" aria-label="Переключить тему"></button></div>
+<nav><a href="index.html">Рейтинг</a><a href="years.html">Слово года</a><a href="coauthors.html">Соавторы</a><a href="cliches.html">Штампы</a><a href="method.html" class="on">Как считаем</a></nav>
+<div class="links"><a href="https://t.me/newezha" target="_blank" rel="noopener">Невежда · @newezha</a>
+<a href="https://t.me/tatarchgk" target="_blank" rel="noopener">Тат. школа ЧГК · @tatarchgk</a>
+<a href="https://github.com/ImangulovA/chgk-vocab" target="_blank" rel="noopener">GitHub</a></div>
+
+<h2>Как мы находим «фирменные слова» автора</h2>
+<p class="lead">Хочется для каждого автора показать слова, которые звучат <b>именно как он</b>. Наивные
+способы не работают:</p>
+<p class="lead">• <b>«Самые частые слова»</b> — у всех получится «который», «это», «назвать». Скучно и одинаково.<br>
+• <b>«Слова только у него»</b> — это почти всегда опечатки и случайные редкости, а не стиль.</p>
+<h2>Идея: сравнить автора со всеми остальными</h2>
+<p class="lead">Мы берём, как часто слово встречается <b>у автора</b>, и сравниваем с тем, как часто оно
+встречается <b>во всём остальном корпусе</b>. Слово «фирменное», если у автора оно идёт заметно чаще,
+чем в среднем по ЧГК. Формально это <b>логарифм отношения шансов</b> (log-odds): насколько сдвинуты
+шансы встретить слово у автора против всех прочих.</p>
+<h2>Поправка на редкость: приор</h2>
+<p class="lead">У редких слов отношение шансов «скачет»: одно-два употребления — и слово будто бы
+уникальное. Чтобы этого не было, мы добавляем <b>мягкий приор</b> (метод Monroe, Colaresi &amp; Quinn,
+2008, «Fightin' Words»): как будто заранее видели каждое слово чуть-чуть, пропорционально его общей
+частоте. Затем делим сдвиг на его погрешность и получаем <b>z-оценку</b>: насколько надёжно слово
+отличает автора. Чем выше z, тем «фирменнее».</p>
+<div class="stats">
+  <div class="stat"><div class="n">z &gt; 3</div><div class="l">уверенный маркер</div></div>
+  <div class="stat"><div class="n">×N</div><div class="l">сколько раз у автора</div></div>
+  <div class="stat"><div class="n">ещё у K</div><div class="l">у скольких других авторов встречается</div></div>
+</div>
+<h2>Две колонки: стиль и темы</h2>
+<p class="lead">Слова-маркеры мы делим на два вида по грамматике (через морфоанализатор pymorphy3):<br>
+• <b>Темы</b> — имена, фамилии, города, организации: <i>о чём</i> автор любит спрашивать
+(Плутарх, Тэтчер, Ливерпуль).<br>
+• <b>Слова-маркеры</b> — нарицательная лексика: <i>как</i> он пишет (у Бориса Бурды это «каковой»,
+«весьма», «совершенно» — его фирменный高-штиль).</p>
+<h2>Родственные авторы</h2>
+<p class="lead">Для каждого автора строим вектор его лексики (tf-idf по нарицательным словам) и ищем троих
+с самым похожим профилем по косинусной близости. Это «пишут в одной манере», а не «про одно и то же».</p>
+<h2>Честные оговорки</h2>
+<p class="lead">Метрика ловит <b>разнообразие и характерность</b> словаря, а не «ум» или качество
+вопросов. Темы часто отражают эрудиционные пристрастия автора, а не стиль. А в корпусе последних лет
+есть белорусские и украинские вопросы: часть шумных слов оттуда.</p>
+<div class="foot"><p>Данные и профили авторов: база вопросов ЧГК
+<a href="https://gotquestions.online/" target="_blank" rel="noopener">gotquestions.online</a>.
+Метод «фирменных слов» — weighted log-odds (см. <a href="method.html">Как считаем</a>).
+Дизайн — тема Pac-Man.</p></div></div>
+<script>
+var tb=document.getElementById('theme');
+function pt(){var t=document.documentElement.getAttribute('data-theme');tb.textContent=t==='dark'?'☀ LIGHT':'☾ DARK';}
+tb.onclick=function(){var c=document.documentElement.getAttribute('data-theme'),n=c==='dark'?'light':'dark';
+document.documentElement.setAttribute('data-theme',n);localStorage.setItem('chgk-theme',n);pt();if(window.onThemeChange)window.onThemeChange();};
+pt();
+</script>
+</body></html>

@@ -1,0 +1,280 @@
+#!/usr/bin/env python3
+"""Считает «фишки» поверх корпуса ЧГК и пишет данные для страниц сайта.
+
+Дополняет report.json:
+  sig_style : топ-10 «слов-маркеров» (нарицательные, weighted log-odds vs корпус)
+  sig_theme : топ-10 «тем» (имена/фамилии/гео/организации)
+  kindred   : 3 родственных автора (косинус tf-idf по лексике)
+Пишет:
+  coauthors.json : граф соавторства (ВСЕ авторы, рёбра по силе связи)
+  years.json     : слово / имя / гео-слово года + «как менялась метода»
+  cliches.json   : зачины вопросов и заезженные обороты
+
+Метод — weighted log-odds с приором Дирихле (Monroe, Colaresi & Quinn 2008).
+Тяжёлые агрегаты кэшируются в scripts/_raw.pkl (пересчёт: --fresh).
+"""
+import json, glob, re, math, os, collections, time, pickle, sys
+
+PACKS_DIR = "/Users/imangulov/Downloads/Quiz Packs/packs"
+HERE = os.path.dirname(__file__)
+ROOT = os.path.join(HERE, "..")
+PKL = os.path.join(HERE, "_raw.pkl")
+CYR = re.compile(r"[а-яёА-ЯЁ]+")
+
+STOP = set("""и в во не что он на я с со как а то все всё она так его но да ты к у же вы за бы
+по только ее её мне было вот от меня еще ещё нет о из ему теперь когда даже ну вдруг ли если уже или
+ни быть был него до вас нибудь опять уж вам ведь там потом себя ничего ей может они тут где есть
+надо ней для мы тебя их чем была сам чтоб без будто чего раз тоже себе под будет ж кто этот того
+потому этого какой совсем ним здесь этом один почти мой тем чтобы нее сейчас были куда зачем всех
+никогда можно при наконец два об другой хоть после над больше тот через эти нас про всего них какая
+много разве три эту моя впрочем свою этой перед иногда лучше чуть том нельзя такой им более всегда
+конечно всю между это свой которых который которые также этих весь эта наш свои мочь стать самый этими
+как-то также""".split())
+
+# форматно-жаргонные слова ЧГК — исключаем из «слова года» и «слов-маркеров»
+META = set("""слово вопрос замена заменить цитата икс игрек зет материал раздаточный раздатка чтец
+знаток ответ буква ведущий статья википедия журнал герой альфа бета гамма пропуск пропустить
+воспроизвести прослушать обсуждение дуплет блиц тур редактор автор команда назвать название поэтому
+внимание многоточие пример изображение картинка фотография рисунок аудио видео текст строка символ
+знак логотип аббревиатура пара пропущенный некоторый пропуская гласный согласный слог фрагмент
+раунд альф альфа бета гамма дельта омега зет назва гэта пытанна больша льшуя кова знатокиада
+викторович""".split())
+
+import pymorphy3
+morph = pymorphy3.MorphAnalyzer()
+_lemma, _kind, _pos = {}, {}, {}
+def lemma(w):
+    v = _lemma.get(w)
+    if v is None:
+        v = morph.parse(w)[0].normal_form; _lemma[w] = v
+    return v
+def kind(lm):
+    k = _kind.get(lm)
+    if k is None:
+        t = morph.parse(lm)[0].tag
+        k = ("surn" if "Surn" in t else "name" if ("Name" in t or "Patr" in t)
+             else "geo" if "Geox" in t else "org" if "Orgn" in t else "none")
+        _kind[lm] = k
+    return k
+def pos(lm):
+    p = _pos.get(lm)
+    if p is None:
+        p = morph.parse(lm)[0].tag.POS or ""; _pos[lm] = p
+    return p
+
+def texts(q):
+    return (q.get("text", "") or ""), (q.get("comment", "") or "")
+def year_of(q, pack):
+    for src in (q.get("endDate"), q.get("pubDate"), pack.get("endDate"),
+                pack.get("startDate"), pack.get("pubDate")):
+        if src and len(src) >= 4 and src[:4].isdigit():
+            y = int(src[:4])
+            if 1989 <= y <= 2026: return y
+    return None
+
+
+def build_raw(disp_names):
+    files = sorted(glob.glob(os.path.join(PACKS_DIR, "*.json")))
+    print(f"packs={len(files)}", flush=True)
+    global_lemma = collections.Counter()
+    author_lemma = collections.defaultdict(collections.Counter)
+    coauthor = collections.Counter()
+    node_name, node_q = {}, collections.Counter()
+    opener2 = collections.Counter(); opener3 = collections.Counter(); opener4 = collections.Counter()
+    trigram = collections.Counter()
+    year_lemma = collections.defaultdict(collections.Counter); year_tot = collections.Counter()
+    seen = set()
+    t0 = time.time()
+    for i, fn in enumerate(files):
+        try: d = json.load(open(fn))
+        except Exception: continue
+        for tour in d.get("tours", []):
+            for q in tour.get("questions", []):
+                qid = q.get("id")
+                if qid in seen: continue
+                seen.add(qid)
+                text, comment = texts(q)
+                toks = [w.lower() for w in CYR.findall(text + "\n" + comment)]
+                lems = [lemma(t) for t in toks]
+                global_lemma.update(lems)
+                y = year_of(q, d)
+                if y is not None:
+                    year_lemma[y].update(lems); year_tot[y] += len(lems)
+                ids = sorted({a["id"] for a in q.get("authors", []) if a.get("id")})
+                for a in q.get("authors", []):
+                    if a.get("id"):
+                        node_name[a["id"]] = a.get("name", "?"); node_q[a["id"]] += 1
+                    if a.get("name") in disp_names:
+                        author_lemma[a["name"]].update(lems)
+                for x in range(len(ids)):
+                    for z in range(x + 1, len(ids)):
+                        coauthor[(ids[x], ids[z])] += 1
+                tt = [w.lower() for w in CYR.findall(text)]
+                if len(tt) >= 2: opener2[" ".join(tt[:2])] += 1
+                if len(tt) >= 3: opener3[" ".join(tt[:3])] += 1
+                if len(tt) >= 4: opener4[" ".join(tt[:4])] += 1
+                for k in range(len(tt) - 2):
+                    trigram[(tt[k], tt[k+1], tt[k+2])] += 1
+        if len(trigram) > 4_000_000:
+            trigram = collections.Counter({k: v for k, v in trigram.items() if v >= 3})
+        if i % 1500 == 0:
+            print(f"  pass {i}/{len(files)} cache={len(_lemma)}", flush=True)
+    def topn(c, n, j=" "):
+        return [{"phrase": (j.join(k) if isinstance(k, tuple) else k), "count": v}
+                for k, v in c.most_common(n)]
+    raw = {
+        "global_lemma": global_lemma, "N": sum(global_lemma.values()),
+        "author_lemma": dict(author_lemma),
+        "year_lemma": {y: c for y, c in year_lemma.items()}, "year_tot": dict(year_tot),
+        "coauthor": coauthor, "node_name": node_name, "node_q": node_q,
+        "cliche": {"openers2": topn(opener2, 25), "openers3": topn(opener3, 25),
+                   "openers4": topn(opener4, 20), "trigrams": topn(trigram, 40),
+                   "questions": len(seen)},
+    }
+    print(f"raw built {time.time()-t0:.0f}s | tokens={raw['N']} vocab={len(global_lemma)}",
+          flush=True)
+    with open(PKL, "wb") as f: pickle.dump(raw, f)
+    return raw
+
+
+A0 = 1000.0
+def emit(raw):
+    G = raw["global_lemma"]; N = raw["N"]
+    author_lemma = raw["author_lemma"]
+    report = json.load(open(os.path.join(ROOT, "report.json")))
+    displayed = {a["name"]: a for a in report["authors"]}
+
+    def logodds(cnt_i, n_i, min_i=3):
+        out = []
+        for w, yi in cnt_i.items():
+            if yi < min_i: continue
+            gw = G[w]; yj = max(gw - yi, 0); aw = A0 * gw / N; nj = N - n_i
+            delta = (math.log((yi + aw) / (n_i + A0 - yi - aw))
+                     - math.log((yj + aw) / (nj + A0 - yj - aw)))
+            var = 1.0 / (yi + aw) + 1.0 / (yj + aw)
+            out.append((w, delta / math.sqrt(var), yi, gw))
+        out.sort(key=lambda x: -x[1]); return out
+
+    author_df = collections.Counter()
+    for c in author_lemma.values():
+        for w in c: author_df[w] += 1
+    Nd = len(author_lemma)
+    vocab_k = {w for w, df in author_df.items()
+               if 2 <= df <= 0.6 * Nd and w not in STOP and w not in META and kind(w) == "none"}
+    idf = {w: math.log(Nd / author_df[w]) for w in vocab_k}
+    vecs = {}
+    for nm, c in author_lemma.items():
+        v = {w: math.log(1 + cnt) * idf[w] for w, cnt in c.items() if w in vocab_k}
+        vecs[nm] = (v, math.sqrt(sum(x*x for x in v.values())) or 1.0)
+    def kindred(nm):
+        vi, ni = vecs[nm]; sims = []
+        for nm2, (vj, nj) in vecs.items():
+            if nm2 == nm: continue
+            a, b = (vi, vj) if len(vi) < len(vj) else (vj, vi)
+            sims.append((nm2, sum(a[w]*b.get(w, 0.0) for w in a) / (ni*nj)))
+        sims.sort(key=lambda x: -x[1])
+        return [{"name": s[0], "pid": displayed[s[0]]["pid"], "sim": round(s[1], 3)}
+                for s in sims[:3]]
+
+    for nm, a in displayed.items():
+        c = author_lemma.get(nm, collections.Counter()); n_i = sum(c.values())
+        style, theme = [], []
+        for w, z, yi, gw in logodds(c, n_i):
+            it = {"lemma": w, "z": round(z, 2), "count": yi, "others": author_df[w]-1}
+            k = kind(w)
+            if k == "none" and w not in STOP and w not in META and len(w) > 2:
+                if len(style) < 10: style.append(it)
+            elif k in ("surn", "name", "geo", "org"):
+                if len(theme) < 10: it["kind"] = k; theme.append(it)
+            if len(style) >= 10 and len(theme) >= 10: break
+        a["sig_style"] = style; a["sig_theme"] = theme; a["kindred"] = kindred(nm)
+    json.dump(report, open(os.path.join(ROOT, "report.json"), "w"),
+              ensure_ascii=False, separators=(",", ":"))
+    print("report.json updated (signatures/kindred)")
+
+    # ---- граф соавторства ----
+    coauthor = raw["coauthor"]; node_name = raw["node_name"]; node_q = raw["node_q"]
+    edges_all = [(a, b, w) for (a, b), w in coauthor.items() if w >= 2]
+    wmin = 2
+    for cand in range(2, 60):
+        nn = {x for a, b, w in edges_all if w >= cand for x in (a, b)}
+        if len(nn) <= 520: wmin = cand; break
+    edges = [(a, b, w) for a, b, w in edges_all if w >= wmin]
+    deg = collections.Counter()
+    for a, b, w in edges: deg[a] += w; deg[b] += w
+    nodeset = {x for a, b, w in edges for x in (a, b)}
+    nodes = [{"id": i, "name": node_name.get(i, "?"), "pid": i, "q": node_q[i], "deg": deg[i]}
+             for i in nodeset]
+    json.dump({"meta": {"wmin": wmin, "nodes": len(nodes), "edges": len(edges),
+                        "total_pairs": len(coauthor),
+                        "total_authors": len({x for p in coauthor for x in p})},
+               "nodes": nodes, "edges": [{"a": a, "b": b, "w": w} for a, b, w in edges]},
+              open(os.path.join(ROOT, "coauthors.json"), "w"),
+              ensure_ascii=False, separators=(",", ":"))
+    print(f"coauthors.json: wmin={wmin} nodes={len(nodes)} edges={len(edges)}")
+
+    # ---- годы: слово / имя / гео года + эволюция методы ----
+    year_lemma = raw["year_lemma"]; year_tot = raw["year_tot"]
+    def yrank(y, mode, min_c):
+        cnt = year_lemma[y]; ny = year_tot[y]; rows = []
+        for w, yi in cnt.items():
+            if yi < min_c or len(w) < 4: continue
+            k = kind(w)
+            if mode == "word" and not (k == "none" and pos(w) == "NOUN"
+                                       and w not in STOP and w not in META): continue
+            if w in META or w in STOP: continue
+            if mode == "name" and k not in ("surn", "name"): continue
+            if mode == "geo" and k != "geo": continue
+            if mode in ("name", "geo") and (G[w] < 40): continue
+            if mode == "word" and G[w] < 25: continue
+            gw = G[w]; yj = max(gw - yi, 0); aw = A0 * gw / N
+            delta = (math.log((yi+aw)/(ny+A0-yi-aw)) - math.log((yj+aw)/(N-ny+A0-yj-aw)))
+            var = 1.0/(yi+aw) + 1.0/(yj+aw)
+            rows.append((w, delta/math.sqrt(var), yi))
+        rows.sort(key=lambda x: -x[1]); return rows
+    years_out = []
+    for y in sorted(year_lemma):
+        if year_tot[y] < 40000: continue
+        def one(mode, mc):
+            r = yrank(y, mode, mc)
+            return {"lemma": r[0][0], "z": round(r[0][1], 2), "count": r[0][2]} if r else None
+        years_out.append({
+            "year": y, "tokens": year_tot[y],
+            "word": one("word", 8), "name": one("name", 8), "geo": one("geo", 6),
+            "top5": [{"lemma": w, "z": round(z, 2), "count": c} for w, z, c in yrank(y, "word", 8)[:5]],
+        })
+    json.dump({"years": years_out}, open(os.path.join(ROOT, "years.json"), "w"),
+              ensure_ascii=False, separators=(",", ":"))
+    print(f"years.json: {len(years_out)} years")
+
+    json.dump({"meta": {"questions": raw["cliche"]["questions"]},
+               **{k: raw["cliche"][k] for k in ("openers2", "openers3", "openers4", "trigrams")}},
+              open(os.path.join(ROOT, "cliches.json"), "w"),
+              ensure_ascii=False, separators=(",", ":"))
+    print("cliches.json written")
+
+    print("\n=== Борис Бурда ===")
+    b = displayed.get("Борис Бурда")
+    print(" style:", [x["lemma"] for x in b["sig_style"]])
+    print(" theme:", [x["lemma"] for x in b["sig_theme"]])
+    print(" kindred:", [x["name"] for x in b["kindred"]])
+    print("=== слово / имя / гео года ===")
+    for yo in years_out:
+        w = yo["word"]["lemma"] if yo["word"] else "-"
+        nmn = yo["name"]["lemma"] if yo["name"] else "-"
+        g = yo["geo"]["lemma"] if yo["geo"] else "-"
+        print(f"  {yo['year']}: {w:14} имя={nmn:12} гео={g}")
+
+
+def main():
+    report = json.load(open(os.path.join(ROOT, "report.json")))
+    disp_names = {a["name"] for a in report["authors"]}
+    if "--fresh" in sys.argv or not os.path.exists(PKL):
+        raw = build_raw(disp_names)
+    else:
+        print("loading cached _raw.pkl (use --fresh to recompute)")
+        raw = pickle.load(open(PKL, "rb"))
+    emit(raw)
+
+if __name__ == "__main__":
+    main()
