@@ -128,7 +128,10 @@ def main():
     def lemma(w):
         v = cache.get(w)
         if v is None:
-            v = morph.parse(w)[0].normal_form
+            p = morph.parse(w)[0]
+            # для слов не из словаря pymorphy ВЫДУМЫВАЕТ лемму («роуч»->«роучий»,
+            # «базен»->«базть») — тогда оставляем само слово
+            v = p.normal_form if p.is_known else w
             cache[w] = v
         return v
 

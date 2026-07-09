@@ -28,7 +28,8 @@ morph = pymorphy3.MorphAnalyzer(); _lem = {}
 def lemma(w):
     v = _lem.get(w)
     if v is None:
-        v = morph.parse(w)[0].normal_form; _lem[w] = v
+        p = morph.parse(w)[0]  # не из словаря -> оставляем слово (иначе pymorphy выдумывает лемму)
+        v = p.normal_form if p.is_known else w; _lem[w] = v
     return v
 
 MFW_N = 300          # сколько частотных слов для Delta
