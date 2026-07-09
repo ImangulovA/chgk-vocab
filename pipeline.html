@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Кухня — CHGK Lexicon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('chgk-theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+:root{--maze:#2A3FE5;--pac:#FFD400;--pink:#F4B9B0;
+  --pixel:'Press Start 2P',monospace;--mono:'Space Mono','JetBrains Mono',ui-monospace,Menlo,monospace;}
+html[data-theme="light"]{--bg:#FBFBF4;--panel:#FFFFFF;--text:#111827;--muted:#5b6472;
+  --pellet:#c7cef0;--accent:#2A3FE5;--logo-shadow:#FFD400;--shadow:#dfe2f5;
+  --fill1:#E0A800;--fill2:#FFD400;--pac-shadow:rgba(0,0,0,.28);--line:#e3e6f2;--chip:#eef0fb;}
+html[data-theme="dark"]{--bg:#000000;--panel:#0a0d1a;--text:#F5F7FA;--muted:#8b93a7;
+  --pellet:#3a4470;--accent:#FFD400;--logo-shadow:#2A3FE5;--shadow:#1a1f4d;
+  --fill1:#8a7400;--fill2:#FFD400;--pac-shadow:transparent;--line:#1a1f4d;--chip:#141a30;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;
+  line-height:1.55;background-image:radial-gradient(var(--pellet) 1px,transparent 1px);
+  background-size:22px 22px}
+.wrap{max-width:980px;margin:0 auto;padding:22px 18px 90px}
+a{color:var(--accent)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-family:var(--pixel);color:var(--accent);font-size:22px;line-height:1.35;letter-spacing:1px;
+  margin:0;text-shadow:3px 3px 0 var(--logo-shadow);text-decoration:none}
+.logo .ghost{color:var(--pink)}
+.theme{font-family:var(--pixel);font-size:10px;cursor:pointer;white-space:nowrap;background:var(--panel);
+  color:var(--accent);border:2px solid var(--maze);border-radius:6px;padding:9px 10px;box-shadow:3px 3px 0 var(--shadow)}
+.theme:focus-visible{outline:3px solid var(--pac);outline-offset:2px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+nav a{font-family:var(--pixel);font-size:10px;text-decoration:none;color:var(--text);
+  background:var(--panel);border:2px solid var(--maze);border-radius:6px;padding:8px 10px}
+nav a.on{background:var(--maze);color:#fff}
+nav a:hover{color:var(--pink)}
+.links{display:flex;flex-wrap:wrap;gap:8px 14px;margin:6px 0 16px;font-size:12.5px}
+.links a{color:var(--accent);text-decoration:none;font-weight:700;border-bottom:2px dotted var(--maze);padding-bottom:1px}
+.links a:hover{color:var(--pink)}
+h2{font-family:var(--pixel);font-size:15px;color:var(--accent);margin:26px 0 12px;line-height:1.4}
+.lead{color:var(--text);max-width:720px}.lead b{color:var(--accent)}
+.muted{color:var(--muted)}
+.foot{color:var(--muted);font-size:12.5px;margin-top:38px;border-top:2px dotted var(--maze);padding-top:18px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 22px}
+.stat{background:var(--panel);border:3px solid var(--maze);border-radius:8px;padding:12px 16px;min-width:130px;box-shadow:4px 4px 0 var(--shadow)}
+.stat .n{font-family:var(--pixel);font-size:18px;color:var(--accent)}
+.stat .l{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-top:8px}
+.chip{display:inline-flex;align-items:baseline;gap:6px;background:var(--chip);border:1px solid var(--line);
+  border-radius:6px;padding:4px 9px;margin:3px 4px 3px 0;font-size:13px}
+.chip b{color:var(--accent)}.chip small{color:var(--muted);font-size:10.5px}
+mark{background:var(--pac);color:#000;border-radius:3px;padding:0 2px}
+
+.step{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;margin:12px 0;
+  background:var(--panel);border:2px solid var(--maze);border-radius:8px;padding:12px 14px;box-shadow:4px 4px 0 var(--shadow)}
+.step .num{font-family:var(--pixel);font-size:14px;color:var(--pac);background:var(--maze);border-radius:6px;
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+.step h3{margin:0 0 4px;font-size:15px;color:var(--accent)}
+.step code{background:var(--chip);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12px}
+pre{background:var(--panel);border:2px solid var(--maze);border-radius:8px;padding:12px 14px;overflow:auto;
+  font-size:12.5px;line-height:1.5;box-shadow:4px 4px 0 var(--shadow)}
+.formula{font-family:var(--mono);background:var(--chip);border:1px solid var(--line);border-radius:6px;
+  padding:10px 12px;display:inline-block;font-size:13px}
+ul.tight{margin:6px 0}ul.tight li{margin:3px 0}
+</style></head><body><div class="wrap">
+<div class="head"><a class="logo" href="index.html">CHGK <span class="ghost">LEXICON</span></a>
+<button class="theme" id="theme" type="button" aria-label="Переключить тему"></button></div>
+<nav><a href="index.html">Рейтинг</a><a href="years.html">Слово года</a><a href="coauthors.html">Соавторы</a><a href="cliches.html">Штампы</a><a href="method.html">Как считаем</a><a href="pipeline.html" class="on">Кухня</a></nav>
+<div class="links"><a href="https://t.me/newezha" target="_blank" rel="noopener">Невежда · @newezha</a>
+<a href="https://t.me/tatarchgk" target="_blank" rel="noopener">Тат. школа ЧГК · @tatarchgk</a>
+<a href="https://github.com/ImangulovA/chgk-vocab" target="_blank" rel="noopener">GitHub</a></div>
+
+<h2>Кухня: как это всё собрано</h2>
+<p class="lead">Здесь без прикрас: откуда данные, что делают скрипты и по каким формулам считаются
+метрики. Весь код открыт на <a href="https://github.com/ImangulovA/chgk-vocab" target="_blank" rel="noopener">GitHub</a>.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">6701</div><div class="l">пакетов вопросов</div></div>
+  <div class="stat"><div class="n">436,454</div><div class="l">вопросов</div></div>
+  <div class="stat"><div class="n">9,430</div><div class="l">авторов</div></div>
+  <div class="stat"><div class="n">21,6 млн</div><div class="l">кириллических слов</div></div>
+</div>
+
+<h2>Откуда данные</h2>
+<p class="lead">Источник — публичный дамп базы вопросов ЧГК с
+<a href="https://gotquestions.online/" target="_blank" rel="noopener">gotquestions.online</a> (наследник
+db.chgk.info). Один JSON на турнир/пакет, внутри — туры и вопросы:</p>
+<pre>pack
+ ├─ tours[]
+ │   └─ questions[]
+ │        ├─ text        // текст вопроса
+ │        ├─ comment     // авторский комментарий
+ │        ├─ answer / source / zachet ...
+ │        └─ authors[] { id, name, gender }   // id == профиль gotquestions.online/person/&lt;id&gt;</pre>
+<p class="lead">Ключевой факт: <code>id</code> автора в дампе совпадает с id его профиля на сайте, поэтому
+каждое имя на страницах кликабельно.</p>
+
+<h2>Как строится корпус автора</h2>
+<ul class="tight lead">
+  <li>Берём <b>text + comment</b> каждого вопроса автора. Ответы и источники не считаем: это не авторская проза.</li>
+  <li>Оставляем <b>только кириллические</b> токены (латиница, цифры, пунктуация выбрасываются),
+      приводим к нижнему регистру.</li>
+  <li>Лемматизируем морфоанализатором <b>pymorphy3</b> (каждое слово к начальной форме).</li>
+  <li>Дедуп по глобальному <b>id вопроса</b>: один вопрос живёт в нескольких пакетах, но считается один раз.</li>
+  <li>Со-авторский вопрос засчитывается <b>каждому</b> из соавторов.</li>
+</ul>
+
+<h2>Три шага пайплайна</h2>
+<div class="step"><div class="num">1</div><div>
+  <h3>build_report.py → report.json</h3>
+  <p>Два прохода по всем пакетам: сперва считаем объём корпуса на автора и отбираем тех, у кого
+  ≥ 10&nbsp;000 слов (359 авторов). Затем собираем их слова в хронологии и считаем главную
+  метрику — <b>число уникальных лемм в первых 25&nbsp;000 словах</b> (окно как у Иноземцева). У кого корпус
+  меньше 25k — «бледный» ряд (149 надёжных из 359).</p></div></div>
+<div class="step"><div class="num">2</div><div>
+  <h3>compute_features.py → report.json + coauthors/years/cliches.json</h3>
+  <p>Тяжёлая часть, один проход + кэш. Считает фирменные слова (weighted log-odds), родственных авторов
+  (tf-idf + косинус), граф соавторства, слово/имя/место года и штампы. Промежуточные счётчики кэшируются
+  в <code>_raw.pkl</code>, так что перебор фильтров занимает секунды, а не минуты (пересчёт: <code>--fresh</code>).</p></div></div>
+<div class="step"><div class="num">3</div><div>
+  <h3>build_site.py → 6 страниц</h3>
+  <p>Вшивает JSON прямо в HTML: каждая страница <b>самодостаточна</b> (данные внутри файла, ничего не грузится
+  с бэкенда). Общие тема, навигация и переключатель светлая/тёмная.</p></div></div>
+
+<h2>Фирменные слова: weighted log-odds</h2>
+<p class="lead">Не «самые частые» (у всех выйдет «который») и не «только у него» (это опечатки). Сравниваем
+частоту слова <b>у автора</b> и <b>во всём остальном корпусе</b>, со сглаживающим приором Дирихле
+(Monroe, Colaresi &amp; Quinn, 2008). Итог — z-оценка «насколько надёжно слово отличает автора»:</p>
+<p><span class="formula">δ = log( (y<sub>i</sub>+α<sub>w</sub>) / (n<sub>i</sub>−y<sub>i</sub>+…) ) − log( то же для «всех остальных» ) ;&nbsp; z = δ / √(вариация)</span></p>
+<p class="lead">Слова делим на <b>темы</b> (имена, фамилии, города, организации — по морфо-тегам pymorphy
+Surn/Name/Geox/Orgn) и <b>стиль</b> (нарицательная лексика). Подробнее — на странице
+<a href="method.html">Как считаем</a>.</p>
+
+<h2>Остальные метрики коротко</h2>
+<ul class="tight lead">
+  <li><b>Родственные авторы</b>: вектор лексики автора (tf-idf по нарицательным словам) → 3 ближайших по косинусу.</li>
+  <li><b>Граф соавторства</b>: пары авторов по совместным вопросам; показываем связи силой ≥ 6
+      (491 узлов, 395 рёбер из 5877 пар), чтобы не утонуть в одиночных.</li>
+  <li><b>Слово/имя/место года</b>: та же log-odds, но «год против всех лет»; форматный жаргон ЧГК
+      (икс, замена, раздатка, альфа) вынесен в стоп-лист.</li>
+  <li><b>Штампы</b>: частоты зачинов (первые 2–4 слова) и триграмм по тексту всех вопросов.</li>
+</ul>
+
+<h2>Честные оговорки</h2>
+<ul class="tight lead">
+  <li>Метрика словаря — про <b>разнообразие</b>, а не про «ум» или качество вопросов.</li>
+  <li>«Темы» отражают эрудиционные пристрастия автора, а не манеру письма.</li>
+  <li>В корпусе последних лет есть белорусские и украинские вопросы — часть шумных слов оттуда.</li>
+  <li>Мы публикуем только агрегаты и код; сам дамп вопросов (чужой контент) не выкладываем.</li>
+</ul>
+<div class="foot"><p>Данные и профили авторов: база вопросов ЧГК
+<a href="https://gotquestions.online/" target="_blank" rel="noopener">gotquestions.online</a>.
+Метод «фирменных слов» — weighted log-odds (см. <a href="method.html">Как считаем</a>).
+Дизайн — тема Pac-Man.</p></div></div>
+<script>
+var tb=document.getElementById('theme');
+function pt(){var t=document.documentElement.getAttribute('data-theme');tb.textContent=t==='dark'?'☀ LIGHT':'☾ DARK';}
+tb.onclick=function(){var c=document.documentElement.getAttribute('data-theme'),n=c==='dark'?'light':'dark';
+document.documentElement.setAttribute('data-theme',n);localStorage.setItem('chgk-theme',n);pt();if(window.onThemeChange)window.onThemeChange();};
+pt();
+</script>
+</body></html>

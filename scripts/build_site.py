@@ -16,7 +16,7 @@ years = load("years.json"); cliches = load("cliches.json")
 
 NAV = [("index.html", "Рейтинг"), ("years.html", "Слово года"),
        ("coauthors.html", "Соавторы"), ("cliches.html", "Штампы"),
-       ("method.html", "Как считаем")]
+       ("method.html", "Как считаем"), ("pipeline.html", "Кухня")]
 
 CSS = r"""
 :root{--maze:#2A3FE5;--pac:#FFD400;--pink:#F4B9B0;
@@ -407,5 +407,103 @@ resize();loop();
     html = html.replace("</body></html>", script + "</body></html>")
     w("coauthors.html", html.replace("__COAUTHORS__", json.dumps(coauthors, ensure_ascii=False, separators=(",", ":"))))
 
-build_index(); build_method(); build_years(); build_cliches(); build_coauthors()
+# ============================ pipeline.html ============================
+def build_pipeline():
+    m = report["meta"]; cm = coauthors["meta"]
+    extra = """
+.step{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;margin:12px 0;
+  background:var(--panel);border:2px solid var(--maze);border-radius:8px;padding:12px 14px;box-shadow:4px 4px 0 var(--shadow)}
+.step .num{font-family:var(--pixel);font-size:14px;color:var(--pac);background:var(--maze);border-radius:6px;
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+.step h3{margin:0 0 4px;font-size:15px;color:var(--accent)}
+.step code{background:var(--chip);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12px}
+pre{background:var(--panel);border:2px solid var(--maze);border-radius:8px;padding:12px 14px;overflow:auto;
+  font-size:12.5px;line-height:1.5;box-shadow:4px 4px 0 var(--shadow)}
+.formula{font-family:var(--mono);background:var(--chip);border:1px solid var(--line);border-radius:6px;
+  padding:10px 12px;display:inline-block;font-size:13px}
+ul.tight{margin:6px 0}ul.tight li{margin:3px 0}
+"""
+    body = f"""
+<h2>Кухня: как это всё собрано</h2>
+<p class="lead">Здесь без прикрас: откуда данные, что делают скрипты и по каким формулам считаются
+метрики. Весь код открыт на <a href="https://github.com/ImangulovA/chgk-vocab" target="_blank" rel="noopener">GitHub</a>.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">6701</div><div class="l">пакетов вопросов</div></div>
+  <div class="stat"><div class="n">{m['total_questions']:,}</div><div class="l">вопросов</div></div>
+  <div class="stat"><div class="n">{m['total_authors']:,}</div><div class="l">авторов</div></div>
+  <div class="stat"><div class="n">21,6 млн</div><div class="l">кириллических слов</div></div>
+</div>
+
+<h2>Откуда данные</h2>
+<p class="lead">Источник — публичный дамп базы вопросов ЧГК с
+<a href="https://gotquestions.online/" target="_blank" rel="noopener">gotquestions.online</a> (наследник
+db.chgk.info). Один JSON на турнир/пакет, внутри — туры и вопросы:</p>
+<pre>pack
+ ├─ tours[]
+ │   └─ questions[]
+ │        ├─ text        // текст вопроса
+ │        ├─ comment     // авторский комментарий
+ │        ├─ answer / source / zachet ...
+ │        └─ authors[] {{ id, name, gender }}   // id == профиль gotquestions.online/person/&lt;id&gt;</pre>
+<p class="lead">Ключевой факт: <code>id</code> автора в дампе совпадает с id его профиля на сайте, поэтому
+каждое имя на страницах кликабельно.</p>
+
+<h2>Как строится корпус автора</h2>
+<ul class="tight lead">
+  <li>Берём <b>text + comment</b> каждого вопроса автора. Ответы и источники не считаем: это не авторская проза.</li>
+  <li>Оставляем <b>только кириллические</b> токены (латиница, цифры, пунктуация выбрасываются),
+      приводим к нижнему регистру.</li>
+  <li>Лемматизируем морфоанализатором <b>pymorphy3</b> (каждое слово к начальной форме).</li>
+  <li>Дедуп по глобальному <b>id вопроса</b>: один вопрос живёт в нескольких пакетах, но считается один раз.</li>
+  <li>Со-авторский вопрос засчитывается <b>каждому</b> из соавторов.</li>
+</ul>
+
+<h2>Три шага пайплайна</h2>
+<div class="step"><div class="num">1</div><div>
+  <h3>build_report.py → report.json</h3>
+  <p>Два прохода по всем пакетам: сперва считаем объём корпуса на автора и отбираем тех, у кого
+  ≥ 10&nbsp;000 слов ({m['displayed']} авторов). Затем собираем их слова в хронологии и считаем главную
+  метрику — <b>число уникальных лемм в первых 25&nbsp;000 словах</b> (окно как у Иноземцева). У кого корпус
+  меньше 25k — «бледный» ряд ({m['reliable']} надёжных из {m['displayed']}).</p></div></div>
+<div class="step"><div class="num">2</div><div>
+  <h3>compute_features.py → report.json + coauthors/years/cliches.json</h3>
+  <p>Тяжёлая часть, один проход + кэш. Считает фирменные слова (weighted log-odds), родственных авторов
+  (tf-idf + косинус), граф соавторства, слово/имя/место года и штампы. Промежуточные счётчики кэшируются
+  в <code>_raw.pkl</code>, так что перебор фильтров занимает секунды, а не минуты (пересчёт: <code>--fresh</code>).</p></div></div>
+<div class="step"><div class="num">3</div><div>
+  <h3>build_site.py → 6 страниц</h3>
+  <p>Вшивает JSON прямо в HTML: каждая страница <b>самодостаточна</b> (данные внутри файла, ничего не грузится
+  с бэкенда). Общие тема, навигация и переключатель светлая/тёмная.</p></div></div>
+
+<h2>Фирменные слова: weighted log-odds</h2>
+<p class="lead">Не «самые частые» (у всех выйдет «который») и не «только у него» (это опечатки). Сравниваем
+частоту слова <b>у автора</b> и <b>во всём остальном корпусе</b>, со сглаживающим приором Дирихле
+(Monroe, Colaresi &amp; Quinn, 2008). Итог — z-оценка «насколько надёжно слово отличает автора»:</p>
+<p><span class="formula">δ = log( (y<sub>i</sub>+α<sub>w</sub>) / (n<sub>i</sub>−y<sub>i</sub>+…) ) − log( то же для «всех остальных» ) ;&nbsp; z = δ / √(вариация)</span></p>
+<p class="lead">Слова делим на <b>темы</b> (имена, фамилии, города, организации — по морфо-тегам pymorphy
+Surn/Name/Geox/Orgn) и <b>стиль</b> (нарицательная лексика). Подробнее — на странице
+<a href="method.html">Как считаем</a>.</p>
+
+<h2>Остальные метрики коротко</h2>
+<ul class="tight lead">
+  <li><b>Родственные авторы</b>: вектор лексики автора (tf-idf по нарицательным словам) → 3 ближайших по косинусу.</li>
+  <li><b>Граф соавторства</b>: пары авторов по совместным вопросам; показываем связи силой ≥ {cm['wmin']}
+      ({cm['nodes']} узлов, {cm['edges']} рёбер из {cm['total_pairs']} пар), чтобы не утонуть в одиночных.</li>
+  <li><b>Слово/имя/место года</b>: та же log-odds, но «год против всех лет»; форматный жаргон ЧГК
+      (икс, замена, раздатка, альфа) вынесен в стоп-лист.</li>
+  <li><b>Штампы</b>: частоты зачинов (первые 2–4 слова) и триграмм по тексту всех вопросов.</li>
+</ul>
+
+<h2>Честные оговорки</h2>
+<ul class="tight lead">
+  <li>Метрика словаря — про <b>разнообразие</b>, а не про «ум» или качество вопросов.</li>
+  <li>«Темы» отражают эрудиционные пристрастия автора, а не манеру письма.</li>
+  <li>В корпусе последних лет есть белорусские и украинские вопросы — часть шумных слов оттуда.</li>
+  <li>Мы публикуем только агрегаты и код; сам дамп вопросов (чужой контент) не выкладываем.</li>
+</ul>
+"""
+    w("pipeline.html", head("Кухня — CHGK Lexicon", "pipeline.html", extra) + body + FOOT)
+
+build_index(); build_method(); build_years(); build_cliches(); build_coauthors(); build_pipeline()
 print("site built")
