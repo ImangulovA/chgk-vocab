@@ -16,8 +16,8 @@ years = load("years.json"); cliches = load("cliches.json"); stoplist = load("sto
 
 NAV = [("index.html", "Рейтинг"), ("years.html", "Слово года"),
        ("coauthors.html", "Соавторы"), ("similarity.html", "Похожесть"),
-       ("cliches.html", "Штампы"), ("method.html", "Как считаем"),
-       ("pipeline.html", "Кухня")]
+       ("howsim.html", "Методы"), ("cliches.html", "Штампы"),
+       ("method.html", "Как считаем"), ("pipeline.html", "Кухня")]
 
 CSS = r"""
 :root{--maze:#2A3FE5;--pac:#FFD400;--pink:#F4B9B0;
@@ -616,8 +616,8 @@ def build_similarity():
     body = """
 <h2>Похожесть авторов: 4 взгляда</h2>
 <p class="lead">«Похожи» бывает разное, поэтому соседей можно искать четырьмя способами. Выберите автора
-и сравните, кого выдаёт каждый метод (подробно про методы — на странице
-<a href="method.html">Как считаем</a>):</p>
+и сравните, кого выдаёт каждый метод (как именно работает каждый, с живым демо про «буквы», —
+на странице <a href="howsim.html">Методы</a>):</p>
 <ul class="lead" style="margin:6px 0">
   <li><b>По лексике</b> — общие характерные слова (log-odds отпечаток). «Пишут про похожее похожими словами».</li>
   <li><b>По манере (Delta)</b> — стилометрия по служебным словам. «Похоже устроена речь», без влияния темы.</li>
@@ -653,5 +653,82 @@ document.getElementById('examples').innerHTML=['Эдуард Голуб','Анд
     html = html.replace("</body></html>", script + "</body></html>")
     w("similarity.html", html.replace("__SIM__", json.dumps(SIM, ensure_ascii=False, separators=(",", ":"))))
 
-build_index(); build_method(); build_years(); build_cliches(); build_coauthors(); build_pipeline(); build_similarity()
+# ============================ howsim.html ============================
+def build_howsim():
+    extra = """
+.mcard{background:var(--panel);border:3px solid var(--maze);border-radius:10px;padding:14px 18px;
+  margin:14px 0;box-shadow:5px 5px 0 var(--shadow)}
+.mcard h3{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.mcard .tag{font-family:var(--pixel);font-size:9px;color:var(--muted);text-transform:uppercase}
+.demo{margin:10px 0;padding:12px;border:2px dashed var(--maze);border-radius:8px}
+#gin{font-family:var(--mono);font-size:15px;background:var(--bg);border:2px solid var(--maze);
+  color:var(--text);border-radius:6px;padding:8px 10px;min-width:220px}
+#gout .g{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:5px;
+  padding:3px 8px;margin:4px 4px 0 0;font-size:14px;letter-spacing:1px}
+#gout .g b{color:var(--accent)}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:13px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{font-family:var(--pixel);font-size:9px;color:var(--muted);text-transform:uppercase}
+"""
+    body = """
+<h2>Как работает каждый метод похожести</h2>
+<p class="lead">На странице <a href="similarity.html">Похожесть</a> соседей можно искать четырьмя способами.
+Они меряют <b>разные вещи</b>, поэтому и соседи выходят разные. Вот что происходит под капотом.</p>
+
+<div class="mcard"><div class="tag">способ 1</div><h3>По лексике — стилевой отпечаток</h3>
+<p class="lead">Для автора берём слова, которыми он <b>выделяется</b> на фоне всех (z-оценки weighted log-odds
+по нарицательным словам), и складываем в вектор. Похожи те, у кого совпадают «фирменные» слова.
+Ловит: <b>любимые слова и темы</b>. Пример: у Бориса Бурды это «каковой», «весьма», «римлянин».</p></div>
+
+<div class="mcard"><div class="tag">способ 2</div><h3>По манере — Cosine Delta (стилометрия)</h3>
+<p class="lead">Классика определения авторства (Burrows/Eder). Берём самые частые слова, в основном
+<b>служебные</b> (предлоги, союзы, частицы: «который», «однако», «весьма», «на», «же»), считаем их доли и
+<b>z-нормируем</b> каждое слово по всем авторам. Косинус этих профилей. Ловит: <b>синтаксический почерк</b> —
+как человек строит фразу, почти без влияния темы. Два автора могут писать про совершенно разное, но
+одинаково злоупотреблять «однако» и «тем самым» — Delta их сроднит.</p></div>
+
+<div class="mcard"><div class="tag">способ 3</div><h3>По буквосочетаниям — символьные 3-граммы</h3>
+<p class="lead">Тот, который кажется «случайным». На самом деле нет. Мы <b>режем каждое слово на тройки букв
+внахлёст</b>, добавив границы слова. Слово «удав» превращается в: <code>_уд</code>, <code>уда</code>,
+<code>дав</code>, <code>ав_</code>. Так поступаем со всеми словами автора, считаем частоты троек, взвешиваем
+tf-idf и сравниваем косинусом.</p>
+<div class="demo"><b>Живое демо:</b> введите слово, и увидите его 3-граммы (как их видит метод):<br>
+<input id="gin" value="представьте" autocomplete="off"> <div id="gout"></div></div>
+<p class="lead">Что это ловит: не смысл и не конкретные слова, а <b>морфологию и орфографию</b> — какими
+суффиксами, приставками, окончаниями и буквосочетаниями автор пользуется чаще. Любитель причастий насобирает
+много <code>вш</code>, <code>ющ</code>; любитель превосходных степеней — <code>ейш</code>; кто-то пишет «ё», а
+кто-то «е». Поэтому соседи по «буквам» бывают неожиданными: метод глух к теме и значению и роднит людей по
+<b>фактуре письма на уровне букв</b>. Это грубее и «шумнее» остальных, зато устойчиво к тому, о чём человек пишет.</p></div>
+
+<div class="mcard"><div class="tag">способ 4</div><h3>По смыслу — doc2vec (нейросеть)</h3>
+<p class="lead">Небольшая нейросеть (Paragraph Vectors), которую мы обучаем <b>локально на нашем корпусе</b>.
+Она учится предсказывать слова автора и попутно выдаёт каждому автору вектор-эмбеддинг так, что близкие по
+смыслу оказываются рядом. Ловит: <b>общее смысловое поле</b> — про что и в каком контексте человек пишет.</p></div>
+
+<h2>Кратко в таблице</h2>
+<table>
+<tr><th>Метод</th><th>Что сравнивает</th><th>Влияет ли тема</th><th>На что похоже</th></tr>
+<tr><td>По лексике</td><td>характерные слова (log-odds)</td><td>да, частично</td><td>любимые слова и темы</td></tr>
+<tr><td>По манере (Delta)</td><td>частоты служебных слов</td><td>почти нет</td><td>синтаксический почерк</td></tr>
+<tr><td>По буквам (3-граммы)</td><td>тройки букв</td><td>нет</td><td>морфология, орфография</td></tr>
+<tr><td>По смыслу (нейро)</td><td>эмбеддинг doc2vec</td><td>да, сильно</td><td>смысловое поле</td></tr>
+</table>
+<p class="lead">Поэтому у одного и того же автора соседи по «лексике» и «смыслу» часто пересекаются (оба смотрят
+на содержание), а по «буквам» — совсем другие: это не баг, а другой срез похожести. Полные формулы — на
+странице <a href="method.html">Как считаем</a>.</p>
+"""
+    script = """
+<script>
+const gin=document.getElementById('gin'),gout=document.getElementById('gout');
+function grams(){const w=gin.value.trim().toLowerCase();if(!w){gout.innerHTML='';return;}
+  const s='_'+w+'_';let out=[];for(let i=0;i<s.length-2;i++)out.push(s.slice(i,i+3));
+  gout.innerHTML=out.map(g=>`<span class="g">${g.replace(/_/g,'<b>_</b>')}</span>`).join('');}
+gin.oninput=grams;grams();
+</script>
+"""
+    html = head("Методы похожести — CHGK Lexicon", "howsim.html", extra) + body + FOOT
+    html = html.replace("</body></html>", script + "</body></html>")
+    w("howsim.html", html)
+
+build_index(); build_method(); build_years(); build_cliches(); build_coauthors(); build_pipeline(); build_similarity(); build_howsim()
 print("site built")

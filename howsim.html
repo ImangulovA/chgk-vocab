@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Методы похожести — CHGK Lexicon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('chgk-theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+:root{--maze:#2A3FE5;--pac:#FFD400;--pink:#F4B9B0;
+  --pixel:'Press Start 2P',monospace;--mono:'Space Mono','JetBrains Mono',ui-monospace,Menlo,monospace;}
+html[data-theme="light"]{--bg:#FBFBF4;--panel:#FFFFFF;--text:#111827;--muted:#5b6472;
+  --pellet:#c7cef0;--accent:#2A3FE5;--logo-shadow:#FFD400;--shadow:#dfe2f5;
+  --fill1:#E0A800;--fill2:#FFD400;--pac-shadow:rgba(0,0,0,.28);--line:#e3e6f2;--chip:#eef0fb;}
+html[data-theme="dark"]{--bg:#000000;--panel:#0a0d1a;--text:#F5F7FA;--muted:#8b93a7;
+  --pellet:#3a4470;--accent:#FFD400;--logo-shadow:#2A3FE5;--shadow:#1a1f4d;
+  --fill1:#8a7400;--fill2:#FFD400;--pac-shadow:transparent;--line:#1a1f4d;--chip:#141a30;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;
+  line-height:1.55;background-image:radial-gradient(var(--pellet) 1px,transparent 1px);
+  background-size:22px 22px}
+.wrap{max-width:980px;margin:0 auto;padding:22px 18px 90px}
+a{color:var(--accent)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-family:var(--pixel);color:var(--accent);font-size:22px;line-height:1.35;letter-spacing:1px;
+  margin:0;text-shadow:3px 3px 0 var(--logo-shadow);text-decoration:none}
+.logo .ghost{color:var(--pink)}
+.theme{font-family:var(--pixel);font-size:10px;cursor:pointer;white-space:nowrap;background:var(--panel);
+  color:var(--accent);border:2px solid var(--maze);border-radius:6px;padding:9px 10px;box-shadow:3px 3px 0 var(--shadow)}
+.theme:focus-visible{outline:3px solid var(--pac);outline-offset:2px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+nav a{font-family:var(--pixel);font-size:10px;text-decoration:none;color:var(--text);
+  background:var(--panel);border:2px solid var(--maze);border-radius:6px;padding:8px 10px}
+nav a.on{background:var(--maze);color:#fff}
+nav a:hover{color:var(--pink)}
+.links{display:flex;flex-wrap:wrap;gap:8px 14px;margin:6px 0 16px;font-size:12.5px}
+.links a{color:var(--accent);text-decoration:none;font-weight:700;border-bottom:2px dotted var(--maze);padding-bottom:1px}
+.links a:hover{color:var(--pink)}
+h2{font-family:var(--pixel);font-size:15px;color:var(--accent);margin:26px 0 12px;line-height:1.4}
+.lead{color:var(--text);max-width:720px}.lead b{color:var(--accent)}
+.muted{color:var(--muted)}
+.foot{color:var(--muted);font-size:12.5px;margin-top:38px;border-top:2px dotted var(--maze);padding-top:18px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 22px}
+.stat{background:var(--panel);border:3px solid var(--maze);border-radius:8px;padding:12px 16px;min-width:130px;box-shadow:4px 4px 0 var(--shadow)}
+.stat .n{font-family:var(--pixel);font-size:18px;color:var(--accent)}
+.stat .l{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-top:8px}
+.chip{display:inline-flex;align-items:baseline;gap:6px;background:var(--chip);border:1px solid var(--line);
+  border-radius:6px;padding:4px 9px;margin:3px 4px 3px 0;font-size:13px}
+.chip b{color:var(--accent)}.chip small{color:var(--muted);font-size:10.5px}
+mark{background:var(--pac);color:#000;border-radius:3px;padding:0 2px}
+
+.mcard{background:var(--panel);border:3px solid var(--maze);border-radius:10px;padding:14px 18px;
+  margin:14px 0;box-shadow:5px 5px 0 var(--shadow)}
+.mcard h3{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.mcard .tag{font-family:var(--pixel);font-size:9px;color:var(--muted);text-transform:uppercase}
+.demo{margin:10px 0;padding:12px;border:2px dashed var(--maze);border-radius:8px}
+#gin{font-family:var(--mono);font-size:15px;background:var(--bg);border:2px solid var(--maze);
+  color:var(--text);border-radius:6px;padding:8px 10px;min-width:220px}
+#gout .g{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:5px;
+  padding:3px 8px;margin:4px 4px 0 0;font-size:14px;letter-spacing:1px}
+#gout .g b{color:var(--accent)}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:13px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{font-family:var(--pixel);font-size:9px;color:var(--muted);text-transform:uppercase}
+</style></head><body><div class="wrap">
+<div class="head"><a class="logo" href="index.html">CHGK <span class="ghost">LEXICON</span></a>
+<button class="theme" id="theme" type="button" aria-label="Переключить тему"></button></div>
+<nav><a href="index.html">Рейтинг</a><a href="years.html">Слово года</a><a href="coauthors.html">Соавторы</a><a href="similarity.html">Похожесть</a><a href="howsim.html" class="on">Методы</a><a href="cliches.html">Штампы</a><a href="method.html">Как считаем</a><a href="pipeline.html">Кухня</a></nav>
+<div class="links"><a href="https://t.me/newezha" target="_blank" rel="noopener">Невежда · @newezha</a>
+<a href="https://t.me/tatarchgk" target="_blank" rel="noopener">Тат. школа ЧГК · @tatarchgk</a>
+<a href="https://github.com/ImangulovA/chgk-vocab" target="_blank" rel="noopener">GitHub</a></div>
+
+<h2>Как работает каждый метод похожести</h2>
+<p class="lead">На странице <a href="similarity.html">Похожесть</a> соседей можно искать четырьмя способами.
+Они меряют <b>разные вещи</b>, поэтому и соседи выходят разные. Вот что происходит под капотом.</p>
+
+<div class="mcard"><div class="tag">способ 1</div><h3>По лексике — стилевой отпечаток</h3>
+<p class="lead">Для автора берём слова, которыми он <b>выделяется</b> на фоне всех (z-оценки weighted log-odds
+по нарицательным словам), и складываем в вектор. Похожи те, у кого совпадают «фирменные» слова.
+Ловит: <b>любимые слова и темы</b>. Пример: у Бориса Бурды это «каковой», «весьма», «римлянин».</p></div>
+
+<div class="mcard"><div class="tag">способ 2</div><h3>По манере — Cosine Delta (стилометрия)</h3>
+<p class="lead">Классика определения авторства (Burrows/Eder). Берём самые частые слова, в основном
+<b>служебные</b> (предлоги, союзы, частицы: «который», «однако», «весьма», «на», «же»), считаем их доли и
+<b>z-нормируем</b> каждое слово по всем авторам. Косинус этих профилей. Ловит: <b>синтаксический почерк</b> —
+как человек строит фразу, почти без влияния темы. Два автора могут писать про совершенно разное, но
+одинаково злоупотреблять «однако» и «тем самым» — Delta их сроднит.</p></div>
+
+<div class="mcard"><div class="tag">способ 3</div><h3>По буквосочетаниям — символьные 3-граммы</h3>
+<p class="lead">Тот, который кажется «случайным». На самом деле нет. Мы <b>режем каждое слово на тройки букв
+внахлёст</b>, добавив границы слова. Слово «удав» превращается в: <code>_уд</code>, <code>уда</code>,
+<code>дав</code>, <code>ав_</code>. Так поступаем со всеми словами автора, считаем частоты троек, взвешиваем
+tf-idf и сравниваем косинусом.</p>
+<div class="demo"><b>Живое демо:</b> введите слово, и увидите его 3-граммы (как их видит метод):<br>
+<input id="gin" value="представьте" autocomplete="off"> <div id="gout"></div></div>
+<p class="lead">Что это ловит: не смысл и не конкретные слова, а <b>морфологию и орфографию</b> — какими
+суффиксами, приставками, окончаниями и буквосочетаниями автор пользуется чаще. Любитель причастий насобирает
+много <code>вш</code>, <code>ющ</code>; любитель превосходных степеней — <code>ейш</code>; кто-то пишет «ё», а
+кто-то «е». Поэтому соседи по «буквам» бывают неожиданными: метод глух к теме и значению и роднит людей по
+<b>фактуре письма на уровне букв</b>. Это грубее и «шумнее» остальных, зато устойчиво к тому, о чём человек пишет.</p></div>
+
+<div class="mcard"><div class="tag">способ 4</div><h3>По смыслу — doc2vec (нейросеть)</h3>
+<p class="lead">Небольшая нейросеть (Paragraph Vectors), которую мы обучаем <b>локально на нашем корпусе</b>.
+Она учится предсказывать слова автора и попутно выдаёт каждому автору вектор-эмбеддинг так, что близкие по
+смыслу оказываются рядом. Ловит: <b>общее смысловое поле</b> — про что и в каком контексте человек пишет.</p></div>
+
+<h2>Кратко в таблице</h2>
+<table>
+<tr><th>Метод</th><th>Что сравнивает</th><th>Влияет ли тема</th><th>На что похоже</th></tr>
+<tr><td>По лексике</td><td>характерные слова (log-odds)</td><td>да, частично</td><td>любимые слова и темы</td></tr>
+<tr><td>По манере (Delta)</td><td>частоты служебных слов</td><td>почти нет</td><td>синтаксический почерк</td></tr>
+<tr><td>По буквам (3-граммы)</td><td>тройки букв</td><td>нет</td><td>морфология, орфография</td></tr>
+<tr><td>По смыслу (нейро)</td><td>эмбеддинг doc2vec</td><td>да, сильно</td><td>смысловое поле</td></tr>
+</table>
+<p class="lead">Поэтому у одного и того же автора соседи по «лексике» и «смыслу» часто пересекаются (оба смотрят
+на содержание), а по «буквам» — совсем другие: это не баг, а другой срез похожести. Полные формулы — на
+странице <a href="method.html">Как считаем</a>.</p>
+<div class="foot"><p>Данные и профили авторов: база вопросов ЧГК
+<a href="https://gotquestions.online/" target="_blank" rel="noopener">gotquestions.online</a>.
+Метод «фирменных слов» — weighted log-odds (см. <a href="method.html">Как считаем</a>).
+Дизайн — тема Pac-Man.</p></div></div>
+<script>
+var tb=document.getElementById('theme');
+function pt(){var t=document.documentElement.getAttribute('data-theme');tb.textContent=t==='dark'?'☀ LIGHT':'☾ DARK';}
+tb.onclick=function(){var c=document.documentElement.getAttribute('data-theme'),n=c==='dark'?'light':'dark';
+document.documentElement.setAttribute('data-theme',n);localStorage.setItem('chgk-theme',n);pt();if(window.onThemeChange)window.onThemeChange();};
+pt();
+</script>
+
+<script>
+const gin=document.getElementById('gin'),gout=document.getElementById('gout');
+function grams(){const w=gin.value.trim().toLowerCase();if(!w){gout.innerHTML='';return;}
+  const s='_'+w+'_';let out=[];for(let i=0;i<s.length-2;i++)out.push(s.slice(i,i+3));
+  gout.innerHTML=out.map(g=>`<span class="g">${g.replace(/_/g,'<b>_</b>')}</span>`).join('');}
+gin.oninput=grams;grams();
+</script>
+</body></html>
