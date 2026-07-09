@@ -54,6 +54,10 @@ input[type=search]{flex:1;min-width:200px}input[type=search]::placeholder{color:
 select,label.tgl{cursor:pointer}label.tgl{display:flex;align-items:center;gap:8px;user-select:none}
 input:focus-visible,select:focus-visible{outline:3px solid var(--pac);outline-offset:2px}
 input[type=checkbox]{accent-color:var(--maze);width:16px;height:16px}
+.btn{font-family:var(--mono);font-size:13px;background:var(--panel);border:2px solid var(--maze);
+  color:var(--text);border-radius:6px;padding:10px 12px;cursor:pointer}
+.btn:focus-visible{outline:3px solid var(--pac);outline-offset:2px}
+.btn.on{background:var(--maze);color:#fff}
 .legend{color:var(--muted);font-size:12px;margin:6px 0 8px}
 .row{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;padding:9px 0;border-bottom:1px dotted var(--line);cursor:pointer}
 .rank{font-family:var(--pixel);color:var(--maze);text-align:right;font-size:11px}
@@ -96,8 +100,9 @@ input[type=checkbox]{accent-color:var(--maze);width:16px;height:16px}
     <option value="total_words">по объёму корпуса</option>
   </select>
   <label class="tgl"><input type="checkbox" id="pale"> показать &lt;25k</label>
+  <button type="button" class="btn" id="expand" aria-expanded="false">Раскрыть все разборы</button>
 </div>
-<div class="legend">Бледный ряд = корпус меньше 25&nbsp;000 слов. Клик по строке раскрывает разбор.</div>
+<div class="legend">Бледный ряд = корпус меньше 25&nbsp;000 слов. Клик по строке раскрывает разбор (слова-маркеры, темы, родственники), или кнопкой сразу у всех.</div>
 <div id="list"></div>
 <div class="foot"><p>Данные и профили авторов: база вопросов ЧГК
 <a href="https://gotquestions.online/" target="_blank" rel="noopener">gotquestions.online</a>.
@@ -116,7 +121,8 @@ const REPORT={"meta":{"window":25000,"display_floor":10000,"total_authors":9425,
 document.getElementById('stats').innerHTML=[['надёжных',fmt(M.reliable)],['медиана',fmt(M.median_reliable_lemmas)],
 ['авторов',fmt(M.total_authors)],['вопросов',fmt(M.total_questions)]].map(([l,n])=>
 `<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
-const qEl=q0('q'),sortEl=q0('sort'),paleEl=q0('pale');function q0(i){return document.getElementById(i);}
+const qEl=q0('q'),sortEl=q0('sort'),paleEl=q0('pale'),expEl=q0('expand');function q0(i){return document.getElementById(i);}
+let allOpen=false;
 function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 function hi(n,q){if(!q)return esc(n);const i=n.toLowerCase().indexOf(q.toLowerCase());if(i<0)return esc(n);
 return esc(n.slice(0,i))+'<mark>'+esc(n.slice(i,i+q.length))+'</mark>'+esc(n.slice(i+q.length));}
@@ -144,16 +150,18 @@ function render(){
         <div class="val">${fmt(r[key])}<small>${unit}</small></div></div>
         <div class="track"><div class="fill" style="width:${wd}%"></div><div class="pac" style="left:${wd}%"></div></div>
         <div class="meta2">${fmt(r.total_questions)} вопр. · ${fmt(r.total_words)} слов · ${r.lemmas_per_1k} лемм/1k</div>
-      </div></div>`;}).join('')||'<p class="muted" style="padding:20px 0">GAME OVER — ничего не найдено.</p>';
+      </div></div>${allOpen?'<div class="row drow">'+detailHtml(r)+'</div>':''}`;}).join('')||'<p class="muted" style="padding:20px 0">GAME OVER — ничего не найдено.</p>';
 }
 q0('list').addEventListener('click',e=>{
-  if(e.target.closest('a'))return; const row=e.target.closest('.row'); if(!row)return;
+  if(e.target.closest('a'))return; const row=e.target.closest('.row'); if(!row||row.classList.contains('drow'))return;
   const nx=row.nextElementSibling;
   if(nx&&nx.classList.contains('drow')){nx.remove();return;}
-  document.querySelectorAll('.drow').forEach(d=>d.remove());
   const r=CUR[+row.dataset.i];const div=document.createElement('div');div.className='row drow';
   div.innerHTML=detailHtml(r);row.after(div);
 });
+expEl.onclick=()=>{allOpen=!allOpen;expEl.classList.toggle('on',allOpen);
+  expEl.setAttribute('aria-expanded',allOpen);
+  expEl.textContent=allOpen?'Свернуть все разборы':'Раскрыть все разборы';render();};
 qEl.oninput=render;sortEl.onchange=render;paleEl.onchange=render;render();
 </script>
 </body></html>
