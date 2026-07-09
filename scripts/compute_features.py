@@ -20,6 +20,21 @@ HERE = os.path.dirname(__file__)
 ROOT = os.path.join(HERE, "..")
 PKL = os.path.join(HERE, "_raw.pkl")
 CYR = re.compile(r"[а-яёА-ЯЁ]+")
+# --- чистка текста: снимаем знаки ударения (U+0301/U+0300) ДО токенизации,
+#     иначе «Дека́рт» рвётся на «дека»+«рт». Точечно, чтобы не разрушить ё/й. ---
+_STRESS = str.maketrans("", "", "̀́́͂")
+_STRESS_TBL = dict.fromkeys([0x0300, 0x0301, 0x0341, 0x0342, 0x00B4, 0x02CA], None)
+def destress(s):
+    return s.translate(_STRESS_TBL)
+# --- детект языка: буквы і ї є ґ ў есть в бел/укр и отсутствуют в русском.
+#     Русский вопрос про обувь «гэта» их не содержит -> не пострадает. ---
+_OTHER = set("іїєґўІЇЄҐЎ")
+_CYR_ALL = re.compile("[а-яёіїєґўА-ЯЁІЇЄҐЎ]")
+def is_nonrussian(t):
+    L = _CYR_ALL.findall(t)
+    if len(L) < 20:
+        return False
+    return sum(1 for c in t if c in _OTHER) / len(L) > 0.03
 
 STOP = set("""и в во не что он на я с со как а то все всё она так его но да ты к у же вы за бы
 по только ее её мне было вот от меня еще ещё нет о из ему теперь когда даже ну вдруг ли если уже или
@@ -90,7 +105,7 @@ def build_raw(disp_names):
     opener2 = collections.Counter(); opener3 = collections.Counter(); opener4 = collections.Counter()
     trigram = collections.Counter()
     year_lemma = collections.defaultdict(collections.Counter); year_tot = collections.Counter()
-    seen = set()
+    seen = set(); skipped_lang = 0
     t0 = time.time()
     for i, fn in enumerate(files):
         try: d = json.load(open(fn))
@@ -101,18 +116,23 @@ def build_raw(disp_names):
                 if qid in seen: continue
                 seen.add(qid)
                 text, comment = texts(q)
+                text = destress(text); comment = destress(comment)
+                if is_nonrussian(text + " " + comment):
+                    skipped_lang += 1; continue   # белорусский/украинский вопрос
                 toks = [w.lower() for w in CYR.findall(text + "\n" + comment)]
-                lems = [lemma(t) for t in toks]
-                global_lemma.update(lems)
+                # каждая лемма учитывается НЕ БОЛЕЕ ОДНОГО РАЗА на вопрос
+                # (иначе «гек ×100» в одном вопросе раздувает частоту)
+                uniq = {lemma(t) for t in toks}
+                global_lemma.update(uniq)
                 y = year_of(q, d)
                 if y is not None:
-                    year_lemma[y].update(lems); year_tot[y] += len(lems)
+                    year_lemma[y].update(uniq); year_tot[y] += len(uniq)
                 ids = sorted({a["id"] for a in q.get("authors", []) if a.get("id")})
                 for a in q.get("authors", []):
                     if a.get("id"):
                         node_name[a["id"]] = a.get("name", "?"); node_q[a["id"]] += 1
                     if a.get("name") in disp_names:
-                        author_lemma[a["name"]].update(lems)
+                        author_lemma[a["name"]].update(uniq)
                 for x in range(len(ids)):
                     for z in range(x + 1, len(ids)):
                         coauthor[(ids[x], ids[z])] += 1
@@ -136,10 +156,10 @@ def build_raw(disp_names):
         "coauthor": coauthor, "node_name": node_name, "node_q": node_q,
         "cliche": {"openers2": topn(opener2, 25), "openers3": topn(opener3, 25),
                    "openers4": topn(opener4, 20), "trigrams": topn(trigram, 40),
-                   "questions": len(seen)},
+                   "questions": len(seen) - skipped_lang},
     }
-    print(f"raw built {time.time()-t0:.0f}s | tokens={raw['N']} vocab={len(global_lemma)}",
-          flush=True)
+    print(f"raw built {time.time()-t0:.0f}s | tokens={raw['N']} vocab={len(global_lemma)} "
+          f"| skipped non-russian={skipped_lang}", flush=True)
     with open(PKL, "wb") as f: pickle.dump(raw, f)
     return raw
 

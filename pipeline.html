@@ -72,7 +72,7 @@ ul.tight{margin:6px 0}ul.tight li{margin:3px 0}
 <div class="stats">
   <div class="stat"><div class="n">6701</div><div class="l">пакетов вопросов</div></div>
   <div class="stat"><div class="n">436,454</div><div class="l">вопросов</div></div>
-  <div class="stat"><div class="n">9,430</div><div class="l">авторов</div></div>
+  <div class="stat"><div class="n">9,425</div><div class="l">авторов</div></div>
   <div class="stat"><div class="n">21,6 млн</div><div class="l">кириллических слов</div></div>
 </div>
 
@@ -104,9 +104,9 @@ db.chgk.info). Один JSON на турнир/пакет, внутри — ту
 <div class="step"><div class="num">1</div><div>
   <h3>build_report.py → report.json</h3>
   <p>Два прохода по всем пакетам: сперва считаем объём корпуса на автора и отбираем тех, у кого
-  ≥ 10&nbsp;000 слов (359 авторов). Затем собираем их слова в хронологии и считаем главную
+  ≥ 10&nbsp;000 слов (357 авторов). Затем собираем их слова в хронологии и считаем главную
   метрику — <b>число уникальных лемм в первых 25&nbsp;000 словах</b> (окно как у Иноземцева). У кого корпус
-  меньше 25k — «бледный» ряд (149 надёжных из 359).</p></div></div>
+  меньше 25k — «бледный» ряд (148 надёжных из 357).</p></div></div>
 <div class="step"><div class="num">2</div><div>
   <h3>compute_features.py → report.json + coauthors/years/cliches.json</h3>
   <p>Тяжёлая часть, один проход + кэш. Считает фирменные слова (weighted log-odds), родственных авторов
