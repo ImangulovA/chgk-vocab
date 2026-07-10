@@ -129,9 +129,16 @@ def main():
         v = cache.get(w)
         if v is None:
             p = morph.parse(w)[0]
-            # для слов не из словаря pymorphy ВЫДУМЫВАЕТ лемму («роуч»->«роучий»,
-            # «базен»->«базть») — тогда оставляем само слово
-            v = p.normal_form if p.is_known else w
+            if p.is_known:
+                v = p.normal_form
+            else:
+                # порча данных в части пакетов: концевая «й» заменена на «и»
+                # («который»->«которыи», «раздаточный»->«раздаточныи»). Если
+                # восстановление й даёт СЛОВАРНОЕ слово — берём его лемму.
+                alt = morph.parse(w[:-1] + "й")[0] if w.endswith("и") else None
+                # для прочих слов не из словаря pymorphy ВЫДУМЫВАЕТ лемму
+                # («роуч»->«роучий») — тогда оставляем само слово
+                v = alt.normal_form if (alt is not None and alt.is_known) else w
             cache[w] = v
         return v
 

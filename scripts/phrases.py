@@ -10,15 +10,26 @@
 import json, glob, os, sys, math, collections
 HERE = os.path.dirname(__file__); ROOT = os.path.join(HERE, "..")
 sys.path.insert(0, HERE)
-from compute_features import destress, is_nonrussian, CYR, STOP, META  # noqa
+from compute_features import destress, is_nonrussian, CYR, STOP, META, lemma  # noqa
 
 PACKS_DIR = "/Users/imangulov/Downloads/Quiz Packs/packs"
 A0 = 1000.0
 BORING = STOP | META
+# ЧГК-техтермин «раздатка / раздаточный материал» во ВСЕХ формах.
+# «раздатка» pymorphy НЕ знает -> её формы не сворачиваются в лемму, поэтому ловим
+# их по поверхностному набору; «раздача»/«раздаточный» словарные -> ловим по лемме
+# (тогда «раздаточного материала», «раздачи» и т.п. тоже отсекаются). Глаголы
+# «раздать/раздаться» — НЕ техтермин, остаются.
+HANDOUT_FORMS = set("""раздатка раздатки раздатке раздатку раздаткой раздаток раздаткам
+раздатками раздатках раздатко раздаточныи раздаточныйматериал""".split())
+def is_handout(t):
+    return t in HANDOUT_FORMS or lemma(t) in ("раздача", "раздаточный")
 
 def boring_ngram(ng):
-    # скучно, если ВСЕ токены служебные/жаргон, или есть слишком короткий токен
-    return all(t in BORING for t in ng) or any(len(t) < 3 for t in ng)
+    # скучно, если ВСЕ токены служебные/жаргон, есть слишком короткий токен,
+    # или встречается техтермин «раздатка/раздаточный материал» (в любой форме)
+    return (all(t in BORING for t in ng) or any(len(t) < 3 for t in ng)
+            or any(is_handout(t) for t in ng))
 
 def main():
     report = json.load(open(os.path.join(ROOT, "report.json")))
