@@ -152,7 +152,7 @@ input[type=checkbox]{accent-color:var(--maze);width:16px;height:16px}
     <option value="ngram">соседи: по буквосочетаниям</option>
     <option value="emb">соседи: по смыслу (нейросеть)</option>
   </select>
-  <label class="tgl"><input type="checkbox" id="pale"> показать &lt;25k</label>
+  <label class="tgl"><input type="checkbox" id="pale" checked> показать &lt;25k</label>
   <button type="button" class="btn" id="expand" aria-expanded="false">Раскрыть все разборы</button>
 </div>
 <div class="legend">Бледный ряд = корпус меньше 25&nbsp;000 слов. Клик по строке раскрывает разбор (слова-маркеры, темы, родственники), или кнопкой сразу у всех.</div>
@@ -188,7 +188,8 @@ function detailHtml(r){
 let CUR=[];
 function render(){
   const q=qEl.value.trim(),key=sortEl.value,sp=paleEl.checked;
-  let rows=A.filter(r=>(sp||r.reliable));if(q)rows=rows.filter(r=>r.name.toLowerCase().includes(q.toLowerCase()));
+  // при поиске ищем по ВСЕМ авторам (включая бледных <25k), иначе — по тумблеру
+  let rows=q?A.filter(r=>r.name.toLowerCase().includes(q.toLowerCase())):A.filter(r=>(sp||r.reliable));
   rows.sort((a,b)=>b[key]-a[key]);CUR=rows;const max=Math.max(1,...rows.map(r=>r[key]));
   const unit=key==='lemmas_per_1k'?'лемм/1k':(key==='total_questions'?'вопр.':(key==='total_words'?'слов':'лемм'));
   q0('list').innerHTML=rows.map((r,i)=>{const wd=Math.max(3,r[key]/max*100);
